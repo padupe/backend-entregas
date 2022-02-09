@@ -1,6 +1,7 @@
 import { prisma } from "../../../../database/prismaClient";
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
+import { AppError } from "../../../../shared/errors/appError";
 
 interface IAuthenticateClient {
     username: string;
@@ -23,13 +24,13 @@ export class AuthenticateClientUseCase {
         });
 
         if(!userAuth) {
-            throw new Error("Username or password invalid!")
+            throw new AppError("Username or password invalid!", 401);
         };
 
         const verifyPassword = await compare(password, userAuth.password);
 
         if(!verifyPassword) {
-            throw new Error("Username or password invalid!");
+            throw new AppError("Username or password invalid!", 401);
         };
 
         //@ts-ignore

@@ -28,6 +28,12 @@
                 "responses": {
                     "201": {
                         "description": "Created"
+                    },
+                    "400": {
+                        "description": "Client already exists!"
+                    },
+                    "500": {
+                        "description": "Internal server error."
                     }
                 }
             }
@@ -51,6 +57,12 @@
                 "responses": {
                     "200": {
                         "description": "Successfull"
+                    },
+                    "401": {
+                        "description": "Username or password invalid!"
+                    },
+                    "500": {
+                        "description": "Internal server error."
                     }
                 }
             }

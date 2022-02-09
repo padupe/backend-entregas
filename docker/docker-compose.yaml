@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  postgresql:
+    image: postgres:alpine
+    container_name: backend_entregas-postgresql
+    environment:
+      - POSTGRES_DB=backend_entregas-nodejs
+      - POSTGRES_USER=padupe
+      - POSTGRES_PASSWORD=development
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/data/postgres
+volumes:
+  pgdata:
+    driver: local

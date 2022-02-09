@@ -1,0 +1,57 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Backend Entregas Documentation",
+        "description": "This is an API Delivery",
+        "version": "1.0.0",
+        "contact": {
+            "email": "peixoto.pauloeduardo@gmail.com"
+        }
+    },
+    "paths": {
+        "/clients": {
+            "post": {
+                "tags": [
+                    "Client"
+                ],
+                "summary": "Create a Client",
+                "description": "Create a new Client",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#definitions/Clients"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Clients": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "email": "teste@email.com",
+                "username": "testusername",
+                "password": "pass1234"
+            }
+        }
+    }
+}

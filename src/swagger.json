@@ -66,6 +66,35 @@
                     }
                 }
             }
+        },
+        "/deliveryman": {
+            "post": {
+                "tags": [
+                    "Deliveryman"
+                ],
+                "summary": "Create a Deliveryman",
+                "description": "Create a new Deliveryman",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#definitions/Deliveryman"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Deliveryman already exists!"
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -100,6 +129,25 @@
             },
             "example": {
                 "username": "testusername",
+                "password": "pass1234"
+            }
+        },
+        "Deliveryman": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "email": "testdeliveyman@email.com",
+                "username": "testusernamedeliveryman",
                 "password": "pass1234"
             }
         }

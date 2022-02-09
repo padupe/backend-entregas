@@ -31,6 +31,29 @@
                     }
                 }
             }
+        },
+        "/authenticate/clients": {
+            "post": {
+                "tags": [
+                    "Authenticate"
+                ],
+                "summary": "Client Authentication",
+                "description": "Authenticate Client on Platafform",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#definitions/AuthClients"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfull"
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -49,6 +72,21 @@
             },
             "example": {
                 "email": "teste@email.com",
+                "username": "testusername",
+                "password": "pass1234"
+            }
+        },
+        "AuthClients": {
+            "type": "object",
+            "properties": {
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "example": {
                 "username": "testusername",
                 "password": "pass1234"
             }

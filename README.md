@@ -18,6 +18,11 @@ docker-compose -f docker/docker-compose.yaml up -d
 
 ### Prisma
 
+Iniciar o Projeto com Prisma
+```
+yarn prisma init
+```
+
 Rodar Migrations
 ```
 yarn prisma migrate dev

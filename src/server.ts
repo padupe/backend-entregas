@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express from "express";
 import swagger from "swagger-ui-express";
 import { router } from "./shared/infra/http/routes";

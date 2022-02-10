@@ -8,19 +8,22 @@ interface ICreateClient {
     password: string;
 };
 
+interface IResponseCreateClient {
+    message: string;
+    client: Object;
+}
+
 export class CreateClientUseCase {
 
-    async execute({ email, username, password }: ICreateClient) {
+    async execute({ email, username, password }: ICreateClient): Promise<IResponseCreateClient> {
 
-        const usernameExists = await prisma.clients.findFirst({
+        const usernameExists = await prisma.clients.findUnique({
             where: {
-                username: {
-                    mode: "insensitive"
-                }
+                username
             }
         });
 
-        const emailExists = await prisma.clients.findFirst({
+        const emailExists = await prisma.clients.findUnique({
             where: {
                 email
             }
@@ -40,6 +43,13 @@ export class CreateClientUseCase {
             }
         });
 
-        return newClient;
+        return {
+            message: "Client registered successfully",
+            client: {
+                id: newClient.id,
+                email: newClient.id,
+                username: newClient.username
+            }
+        };
     };
 };

@@ -16,15 +16,13 @@ interface IResponseCreateDeliveryman {
 export class CreateDeliverymanUseCase {
     async execute({ email, username, password }: ICreateDeliveryman): Promise<IResponseCreateDeliveryman> {
         
-        const usernameExists = await prisma.deliverymans.findFirst({
+        const usernameExists = await prisma.deliverymans.findUnique({
             where: {
-                username: {
-                    mode: "insensitive"
-                }
+                username
             }
         });
 
-        const emailExists = await prisma.deliverymans.findFirst({
+        const emailExists = await prisma.deliverymans.findUnique({
             where: {
                 email
             }
@@ -46,7 +44,11 @@ export class CreateDeliverymanUseCase {
 
         return {
             message: "Deliveryman registered successfully",
-            deliveryman: newDeliveryman
+            deliveryman: {
+                id: newDeliveryman.id,
+                email: newDeliveryman.email,
+                username: newDeliveryman.username
+            }
         };
     };
 };

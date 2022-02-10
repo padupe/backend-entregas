@@ -132,6 +132,11 @@
                 ],
                 "summary": "Create a Delivery",
                 "description": "Create a new Delivery",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -229,14 +234,19 @@
             "properties": {
                 "item_name": {
                     "type": "string"
-                },
-                "id_client": {
-                    "type": "uuid"
                 }
             },
             "example": {
-                "item_name": "notebook",
-                "id_client": "4fd41225-6c9f-475c-bb63-c3b8fad858b5"
+                "item_name": "notebook"
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
             }
         }
     }

@@ -67,6 +67,35 @@
                 }
             }
         },
+        "/authenticate/deliverymans": {
+            "post": {
+                "tags": [
+                    "Authenticate"
+                ],
+                "summary": "Deliveryman Authentication",
+                "description": "Authenticate Deliveryman on Platafform",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#definitions/AuthDeliverymans"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfull"
+                    },
+                    "401": {
+                        "description": "Username or password invalid!"
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    }
+                }
+            }
+        },
         "/deliveryman": {
             "post": {
                 "tags": [
@@ -129,6 +158,21 @@
             },
             "example": {
                 "username": "testusername",
+                "password": "pass1234"
+            }
+        },
+        "AuthDeliverymans": {
+            "type": "object",
+            "properties": {
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "username": "testusernamedeliveryman",
                 "password": "pass1234"
             }
         },

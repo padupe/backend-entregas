@@ -124,6 +124,35 @@
                     }
                 }
             }
+        },
+        "/deliveries": {
+            "post": {
+                "tags": [
+                    "Delivery"
+                ],
+                "summary": "Create a Delivery",
+                "description": "Create a new Delivery",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#definitions/Delivery"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "404": {
+                        "description": "User not found!"
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -193,6 +222,21 @@
                 "email": "testdeliveyman@email.com",
                 "username": "testusernamedeliveryman",
                 "password": "pass1234"
+            }
+        },
+        "Delivery": {
+            "type": "object",
+            "properties": {
+                "item_name": {
+                    "type": "string"
+                },
+                "id_client": {
+                    "type": "uuid"
+                }
+            },
+            "example": {
+                "item_name": "notebook",
+                "id_client": "4fd41225-6c9f-475c-bb63-c3b8fad858b5"
             }
         }
     }

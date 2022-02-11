@@ -115,7 +115,7 @@
                         }
                     },
                     "400": {
-                        "description": "Delivery not found!"
+                        "description": "Client not found!"
                     },
                     "500": {
                         "description": "Internal server error."

@@ -62,6 +62,50 @@
                         "description": "Internal server error."
                     }
                 }
+            },
+            "get": {
+                "tags": [
+                    "Client"
+                ],
+                "summary": "List all clients",
+                "description": "list all clients registered",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucess",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "username": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Users not found!"
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    }
+                }
             }
         },
         "/clients/{id}": {

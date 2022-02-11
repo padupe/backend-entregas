@@ -220,15 +220,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "example": {
-                                        "message": "Invalid Token"
-                                    }
+                                    "$ref": "#definitions/FailureAuthentication"
                                 }
                             }
                         }
@@ -275,7 +267,14 @@
                         }
                     },
                     "401": {
-                        "description": "Username or password invalid!"
+                        "description": "Username or Password Invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/FailureAuthentication"
+                                }
+                            }
+                        }
                     },
                     "500": {
                         "description": "Internal server error."
@@ -319,7 +318,14 @@
                         }
                     },
                     "401": {
-                        "description": "Username or password invalid!"
+                        "description": "Username or Password Invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/FailureAuthentication"
+                                }
+                            }
+                        }
                     },
                     "500": {
                         "description": "Internal server error."
@@ -435,15 +441,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "example": {
-                                        "message": "Invalid Token"
-                                    }
+                                    "$ref": "#definitions/FailureAuthentication"
                                 }
                             }
                         }
@@ -505,8 +503,33 @@
                             }
                         }
                     },
+                    "401": {
+                        "description": "Authentication Failure",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/FailureAuthentication"
+                                }
+                            }
+                        }
+                    },
                     "404": {
-                        "description": "User not found!"
+                        "description": "User not found!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "User not found!"
+                                    }
+                                }
+                            }
+                        }
                     },
                     "500": {
                         "description": "Internal server error."
@@ -559,8 +582,15 @@
                             }
                         }
                     },
-                    "404": {
-                        "description": "User not found!"
+                    "401": {
+                        "description": "Authentication Failure",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/FailureAuthentication"
+                                }
+                            }
+                        }
                     },
                     "500": {
                         "description": "Internal server error."
@@ -617,7 +647,102 @@
                         }
                     },
                     "400": {
-                        "description": "Delivery not found!"
+                        "description": "Delivery not found!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Delivery not found!"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    }
+                }
+            }
+        },
+        "/deliveries/updateEndDate/{id}": {
+            "put": {
+                "tags": [
+                    "Delivery"
+                ],
+                "summary": "Update deliverye end date",
+                "description": "Update a delivery insert end_date",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Delivery ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Update with succesfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id_delivery": {
+                                            "type": "string"
+                                        },
+                                        "client": {
+                                            "type": "string"
+                                        },
+                                        "item": {
+                                            "type": "string"
+                                        },
+                                        "created_at": {
+                                            "type": "string"
+                                        },
+                                        "end_date": {
+                                            "type": "string"
+                                        },
+                                        "deliveryman": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authentication Failure",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/FailureAuthentication"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Not Acceptable",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/DeliverymanNotDelivery"
+                                }
+                            }
+                        }
                     },
                     "500": {
                         "description": "Internal server error."
@@ -704,6 +829,28 @@
             },
             "example": {
                 "item_name": "notebook"
+            }
+        },
+        "FailureAuthentication": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "message": "Invalid Token"
+            }
+        },
+        "DeliverymanNotDelivery": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "message": "Deliveryman is not responsible for delivery"
             }
         }
     },

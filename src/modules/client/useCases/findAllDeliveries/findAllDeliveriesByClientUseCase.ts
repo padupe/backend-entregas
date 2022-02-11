@@ -4,7 +4,7 @@ export class FindAllDeliveriesByClientUseCase {
 
     async execute(id_client: string) {
 
-        const deliveries = await prisma.clients.findMany({
+        const deliveries = await prisma.clients.findUnique({
             where: {
                 id: id_client
             },

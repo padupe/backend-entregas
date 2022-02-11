@@ -167,6 +167,57 @@
                 }
             }
         },
+        "/clients/deliveries": {
+            "get": {
+                "tags": [
+                    "Client"
+                ],
+                "summary": "List all deliveries by Client",
+                "description": "List all deliveries by Client authenticated",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "username": {
+                                            "type": "string"
+                                        },
+                                        "deliveries": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string"
+                                                    },
+                                                    "item_name": {
+                                                        "type": "string"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/authenticate/clients": {
             "post": {
                 "tags": [
@@ -384,7 +435,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Sucess",
+                        "description": "Success",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -513,8 +564,8 @@
                 }
             },
             "example": {
-                "username": "testusername",
-                "password": "pass1234"
+                "username": "padupe",
+                "password": "test1234"
             }
         },
         "AuthDeliverymans": {

@@ -274,6 +274,11 @@
                 ],
                 "summary": "List all deliveries available",
                 "description": "list all deleveries available to delivery",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Sucess",

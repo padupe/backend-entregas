@@ -7,8 +7,6 @@ export class FindAllDeliveriesByClientController {
 
         const { id_client } = request;
 
-        console.log("ID", id_client)
-
         const findAllDeliveriesUseCase = new FindAllDeliveriesByClientUseCase();
         const deliveries = await findAllDeliveriesUseCase.execute(id_client);
 

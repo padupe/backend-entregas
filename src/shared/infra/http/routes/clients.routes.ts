@@ -2,7 +2,7 @@ import { Router } from "express";
 import { ensureAuthenticateClient } from "../../../../middlewares/ensureAuthenticateClient";
 import { CreateClientController } from "../../../../modules/client/useCases/createClient/createClientController";
 import { FindAllClientsController } from "../../../../modules/client/useCases/findAllClients/findAllClientsController";
-import { FindAllDeliveriesByClientController } from "../../../../modules/client/useCases/findAllDeliveries/findAllDeliveriesByClientController";
+import { FindAllDeliveriesByClientController } from "../../../../modules/client/useCases/findAllDeliveriesByClient/findAllDeliveriesByClientController";
 import { FindOneClientController } from "../../../../modules/client/useCases/findOneClient/findOneClientController";
 
 const clientsRoutes = Router();

@@ -320,6 +320,63 @@
                     }
                 }
             }
+        },
+        "/deliveries/updateDeliveryman/{id}": {
+            "put": {
+                "tags": [
+                    "Delivery"
+                ],
+                "summary": "Update Delivery",
+                "description": "Update a delivery insert deliveryman",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Delivery ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Update with succesfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id_delivery": {
+                                            "type": "string"
+                                        },
+                                        "item": {
+                                            "type": "string"
+                                        },
+                                        "client": {
+                                            "type": "string"
+                                        },
+                                        "deliveryman": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Delivery not found!"
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    }
+                }
+            }
         }
     },
     "definitions": {

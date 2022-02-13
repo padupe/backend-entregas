@@ -19,22 +19,26 @@ git clone git@github.com:padupe/backend-entregas.git
 git clone https://github.com/padupe/backend-entregas.git
 ```
 
-2. Instal as dependências
+2. Crie o arquivo <code>.env</code> na raiz do Projeto
+
+3. Copie o código do <code>example.env</code> para o <code>.env</code>
+
+4. Instale as dependências
 ```
 yarn install
 ```
 
-3. Suba o contêiner do Banco de Dados
+5. Suba o contêiner do Banco de Dados
 ```
 docker-compose -f docker/docker-compose.yaml up -d
 ```
 
-4. Popule o Banco de Dados
+6. Popule o Banco de Dados
 ```
 yarn seed
 ```
 
-5. Rode a Aplicação
+7. Rode a Aplicação
 ```
 yarn dev
 ```

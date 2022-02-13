@@ -454,6 +454,16 @@
                             }
                         }
                     },
+                    "409": {
+                        "description": "Conflict",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/TokenConflict"
+                                }
+                            }
+                        }
+                    },
                     "500": {
                         "description": "Internal server error.",
                         "content": {
@@ -556,6 +566,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#definitions/TokenMissing"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/TokenConflict"
                                 }
                             }
                         }
@@ -1293,6 +1313,17 @@
             },
             "example": {
                 "message": "Token Missing"
+            }
+        },
+        "TokenConflict": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "message": "You are not allowed to perform this query."
             }
         },
         "FailureAuthentication": {

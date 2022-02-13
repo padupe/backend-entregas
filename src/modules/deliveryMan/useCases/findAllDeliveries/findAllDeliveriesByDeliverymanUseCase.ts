@@ -1,4 +1,5 @@
 import { prisma } from "../../../../database/prismaClient"
+import { AppError } from "../../../../shared/errors/appError"
 
 export class FindAllDeliveriesByDeliverymanUseCase {
 
@@ -20,6 +21,10 @@ export class FindAllDeliveriesByDeliverymanUseCase {
                 }
             }           
         })
+
+        if(deliveries == null) {
+            throw new AppError("You are not allowed to perform this query.", 409)
+        }
 
         return deliveries
     }

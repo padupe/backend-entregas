@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "../shared/errors/appError";
 import { verify } from "jsonwebtoken";
+import { prisma } from "../database/prismaClient";
 
 interface IPayload {
     sub: string;
@@ -20,6 +21,16 @@ export async function ensureAuthenticateDeliveryman(request: Request, response: 
     try {
         //@ts-ignore
         const { sub } = verify(token, process.env.SECRET_KEY) as IPayload;
+
+        const verifyDeliveryman = await prisma.deliverymans.findUnique({
+            where: {
+                id: sub
+            }
+        })
+
+        if(!verifyDeliveryman) {
+            throw new AppError("Invalid Token", 401)
+        }
 
         request.id_deliveryman = sub;
 

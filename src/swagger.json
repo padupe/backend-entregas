@@ -9,6 +9,71 @@
         }
     },
     "paths": {
+        "/profiles": {
+            "post": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Create a Profile",
+                "description": "Create a profile on App for users",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#definitions/Profiles"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ProfileCreated"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Profile already exists!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ProfileExists"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authentication Failure",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/FailureAuthentication"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ErrorServer"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/clients": {
             "post": {
                 "tags": [
@@ -31,26 +96,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "message": {
-                                            "type": "string"
-                                        },
-                                        "client": {
-                                            "type": "object",
-                                            "properties": {
-                                                "id": {
-                                                    "type": "string"
-                                                },
-                                                "email": {
-                                                    "type": "string"
-                                                },
-                                                "username": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    }
+                                    "$ref": "#definitions/ClientCreated"
                                 }
                             }
                         }
@@ -834,6 +880,51 @@
         }
     },
     "definitions": {
+        "Profiles": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "type": 9,
+                "name": "example"
+            }
+        },
+        "ProfileCreated": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "profile": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            },
+            "example": {
+                "message": "Profile registered successfully",
+                "client": {
+                    "id": "030740e6-5c40-46b6-b407-e6c963444006",
+                    "name": "example",
+                    "type": 9
+                }
+            }
+        },
         "Clients": {
             "type": "object",
             "properties": {
@@ -848,9 +939,39 @@
                 }
             },
             "example": {
-                "email": "teste@email.com",
+                "email": "test@email.com",
                 "username": "testusername",
                 "password": "pass1234"
+            }
+        },
+        "ClientCreated": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "client": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "email": {
+                            "type": "string"
+                        },
+                        "username": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "example": {
+                "message": "Client registered successfully",
+                "client": {
+                    "id": "030740e6-5c40-46b6-b407-e6c963444006",
+                    "email": "test@email.com",
+                    "username": "testusername"
+                }
             }
         },
         "AuthClients": {
@@ -996,6 +1117,17 @@
             },
             "example": {
                 "message": "Client already exists!"
+            }
+        },
+        "ProfileExists": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "message": "Profile already exists!"
             }
         }
     },

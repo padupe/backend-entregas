@@ -11,22 +11,26 @@ datasource db {
 }
 
 model Deliverymans {
-  id       String @id @default(uuid())
-  email    String @unique
-  username String @unique
-  password String
+  id           String @id @default(uuid())
+  profile_type Int    @default(3)
+  email        String @unique
+  username     String @unique
+  password     String
 
   deliveries Deliveries[]
+
   @@map("deliverymans")
 }
 
 model Clients {
-  id       String @id @default(uuid())
-  email    String @unique
-  username String @unique
-  password String
+  id           String @id @default(uuid())
+  profile_type Int    @default(2)
+  email        String @unique
+  username     String @unique
+  password     String
 
   deliveries Deliveries[]
+
   @@map("clients")
 }
 
@@ -42,4 +46,23 @@ model Deliveries {
   deliveryman Deliverymans? @relation(fields: [id_deliveryman], references: [id])
 
   @@map("deliveries")
+}
+
+model Admin {
+  id           String @id @default(uuid())
+  profile_type Int    @default(1)
+  username     String @unique
+  password     String
+
+  @@map("admin")
+}
+
+model Profiles {
+  id         String    @id @default(uuid())
+  type       Int       @unique
+  name       String    @unique
+  created_at DateTime  @default(now())
+  update_at  DateTime?
+
+  @@map("profiles")
 }

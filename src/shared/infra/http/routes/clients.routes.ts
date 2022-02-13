@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { ensureAuthenticateAdmin } from "../../../../middlewares/ensureAuthenticateAdmin";
 import { ensureAuthenticateClient } from "../../../../middlewares/ensureAuthenticateClient";
 import { CreateClientController } from "../../../../modules/client/useCases/createClient/createClientController";
 import { FindAllClientsController } from "../../../../modules/client/useCases/findAllClients/findAllClientsController";
@@ -15,7 +16,7 @@ const findAllDeliveriesByClientController = new FindAllDeliveriesByClientControl
 clientsRoutes.post("/", createClientController.handle);
 clientsRoutes.get("/deliveries", ensureAuthenticateClient, findAllDeliveriesByClientController.handle);
 clientsRoutes.get("/:id", findOneClientController.handle);
-clientsRoutes.get("/", findAllclientsController.handle);
+clientsRoutes.get("/", ensureAuthenticateAdmin, findAllclientsController.handle);
 
 
 export { clientsRoutes };

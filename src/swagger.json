@@ -9,6 +9,186 @@
         }
     },
     "paths": {
+        "/authenticate/admin": {
+            "post": {
+                "tags": [
+                    "Authenticate"
+                ],
+                "summary": "Admin Authentication",
+                "description": "Authenticate Admin on Platafform",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#definitions/AuthAdmin"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/AuthAdminSuccessfully"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Username or Password Invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/FailureAuthentication"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Token Missing",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/TokenMissing"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ErrorServer"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/authenticate/clients": {
+            "post": {
+                "tags": [
+                    "Authenticate"
+                ],
+                "summary": "Client Authentication",
+                "description": "Authenticate Client on Platafform",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#definitions/AuthClients"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/AuthClientsSuccessfully"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Username or Password Invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/FailureAuthentication"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Token Missing",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/TokenMissing"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ErrorServer"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/authenticate/deliverymans": {
+            "post": {
+                "tags": [
+                    "Authenticate"
+                ],
+                "summary": "Deliveryman Authentication",
+                "description": "Authenticate Deliveryman on Platafform",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#definitions/AuthDeliverymans"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/AuthDeliverymansSuccessfully"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Username or Password Invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/FailureAuthentication"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Token Missing",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/TokenMissing"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ErrorServer"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/profiles": {
             "post": {
                 "tags": [
@@ -128,7 +308,7 @@
                     "Client"
                 ],
                 "summary": "List all clients",
-                "description": "list all clients registered",
+                "description": "list all clients registered. Exlusive for Admin.",
                 "security": [
                     {
                         "bearerAuth": []
@@ -291,106 +471,6 @@
                     },
                     "401": {
                         "description": "Authentication Failure",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#definitions/FailureAuthentication"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#definitions/ErrorServer"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/authenticate/clients": {
-            "post": {
-                "tags": [
-                    "Authenticate"
-                ],
-                "summary": "Client Authentication",
-                "description": "Authenticate Client on Platafform",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#definitions/AuthClients"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successfull",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#definitions/AuthClientsSuccessfully"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Username or Password Invalid",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#definitions/FailureAuthentication"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#definitions/ErrorServer"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/authenticate/deliverymans": {
-            "post": {
-                "tags": [
-                    "Authenticate"
-                ],
-                "summary": "Deliveryman Authentication",
-                "description": "Authenticate Deliveryman on Platafform",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#definitions/AuthDeliverymans"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successfull",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#definitions/AuthDeliverymansSuccessfully"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Username or Password Invalid",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -974,6 +1054,36 @@
                 }
             }
         },
+        "AuthAdmin": {
+            "type": "object",
+            "properties": {
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "username": "admintest",
+                "password": "testadmin"
+            }
+        },
+        "AuthAdminSuccessfully": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "message": "Admin Authenticated",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+            }
+        },
         "AuthClients": {
             "type": "object",
             "properties": {
@@ -1062,6 +1172,17 @@
             },
             "example": {
                 "item_name": "notebook"
+            }
+        },
+        "TokenMissing": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "message": "Token Missing"
             }
         },
         "FailureAuthentication": {

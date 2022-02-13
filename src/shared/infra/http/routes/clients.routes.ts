@@ -15,7 +15,7 @@ const findAllDeliveriesByClientController = new FindAllDeliveriesByClientControl
 
 clientsRoutes.post("/", createClientController.handle);
 clientsRoutes.get("/deliveries", ensureAuthenticateClient, findAllDeliveriesByClientController.handle);
-clientsRoutes.get("/:id", findOneClientController.handle);
+clientsRoutes.get("/:id", ensureAuthenticateAdmin, findOneClientController.handle);
 clientsRoutes.get("/", ensureAuthenticateAdmin, findAllclientsController.handle);
 
 

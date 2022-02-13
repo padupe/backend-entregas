@@ -53,8 +53,8 @@ async function main() {
   const deliverymanDefault = prisma.deliverymans.create({
     data: {
       email: "default@email.com",
-      username: "testusernamedeliveryman",
-      password: await hash("pass1234", 10)
+      username: "padupeEntregador",
+      password: await hash("test1234", 10)
     }
   })
 

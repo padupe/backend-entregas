@@ -264,6 +264,93 @@
                 }
             }
         },
+        "profiles/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Delete a Profile",
+                "description": "Delete a profile registered",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Client ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Client found with successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/DeleteProfileByID"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Profile not found!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ProfileNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authentication Failure",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/FailureAuthentication"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Token Missing",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/TokenMissing"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/TokenConflict"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ErrorServer"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/clients": {
             "post": {
                 "tags": [
@@ -923,6 +1010,32 @@
                 }
             }
         },
+        "DeleteProfileByID": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "profile_delected": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            },
+            "example": {
+                "message": "Profile deleted successfully",
+                "profile_delected": {
+                    "name": "Test Delete",
+                    "type": 4
+                }
+            }
+        },
         "Clients": {
             "type": "object",
             "properties": {
@@ -1390,6 +1503,17 @@
             },
             "example": {
                 "message": "Profile already exists!"
+            }
+        },
+        "ProfileNotFound": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "message": "Profile not found!"
             }
         }
     },

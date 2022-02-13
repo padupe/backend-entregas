@@ -11,7 +11,7 @@ export async function ensureAuthenticateAdmin(request: Request, response: Respon
     const authHeader = request.headers.authorization;
 
     if(!authHeader) {
-        throw new AppError("Token Missing", 401)
+        throw new AppError("Token Missing", 403)
     }
 
     const [,token] = authHeader.split(" ");

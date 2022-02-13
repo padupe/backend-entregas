@@ -56,7 +56,14 @@
                         }
                     },
                     "400": {
-                        "description": "Client already exists!"
+                        "description": "Client already exists!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ClientExists"
+                                }
+                            }
+                        }
                     },
                     "500": {
                         "description": "Internal server error.",
@@ -281,15 +288,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "message": {
-                                            "type": "string"
-                                        },
-                                        "token": {
-                                            "type": "string"
-                                        }
-                                    }
+                                    "$ref": "#definitions/AuthClientsSuccessfully"
                                 }
                             }
                         }
@@ -339,15 +338,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "message": {
-                                            "type": "string"
-                                        },
-                                        "token": {
-                                            "type": "string"
-                                        }
-                                    }
+                                    "$ref": "#definitions/AuthDeliverymansSuccessfully"
                                 }
                             }
                         }
@@ -422,7 +413,14 @@
                         }
                     },
                     "400": {
-                        "description": "Deliveryman already exists!"
+                        "description": "Deliveryman already exists!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/DeliverymanExists"
+                                }
+                            }
+                        }
                     },
                     "500": {
                         "description": "Internal server error.",
@@ -870,6 +868,21 @@
                 "password": "test1234"
             }
         },
+        "AuthClientsSuccessfully": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "message": "User Authenticated",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+            }
+        },
         "AuthDeliverymans": {
             "type": "object",
             "properties": {
@@ -883,6 +896,21 @@
             "example": {
                 "username": "testusernamedeliveryman",
                 "password": "pass1234"
+            }
+        },
+        "AuthDeliverymansSuccessfully": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "message": "Deliveryman Authenticated!",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
             }
         },
         "Deliveryman": {
@@ -946,6 +974,28 @@
                 "message": {
                     "type": "string"
                 }
+            }
+        },
+        "DeliverymanExists": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "message": "Deliveryman already exists!"
+            }
+        },
+        "ClientExists": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "message": "Client already exists!"
             }
         }
     },

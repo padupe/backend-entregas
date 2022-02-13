@@ -367,7 +367,7 @@
                     "Client"
                 ],
                 "summary": "Get a Client",
-                "description": "Get a Client by ID",
+                "description": "Get a Client by ID. Exclusive for Admin",
                 "security": [
                     {
                         "bearerAuth": []

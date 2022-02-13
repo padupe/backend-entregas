@@ -51,6 +51,7 @@ model Deliveries {
 model Admin {
   id           String @id @default(uuid())
   profile_type Int    @default(1)
+  email        String @unique
   username     String @unique
   password     String
 

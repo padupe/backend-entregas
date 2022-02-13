@@ -3,14 +3,14 @@ import { hash } from "bcrypt";
 
 async function main() {
 
-    // const admin = await prisma.admin.create({
-    //     data: {
-    //         profile_id: "ASAS",
-    //         username: "admin_app",
-    //         //@ts-ignore
-    //         password: hash(process.env.PASSWORD_ADMIN, 10)
-    //     }
-    // })
+    const admin = await prisma.admin.create({
+        data: {
+            email: "admin@test.com",
+            username: "admin_app",
+            //@ts-ignore
+            password: await hash(process.env.PASSWORD_ADMIN, 10),
+        }
+    })
 
     const profiles = await prisma.profiles.createMany({
         data: [

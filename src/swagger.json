@@ -241,6 +241,16 @@
                             }
                         }
                     },
+                    "403": {
+                        "description": "Token Missing",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/TokenMissing"
+                                }
+                            }
+                        }
+                    },
                     "500": {
                         "description": "Internal server error.",
                         "content": {
@@ -320,21 +330,17 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "id": {
-                                                "type": "string"
-                                            },
-                                            "email": {
-                                                "type": "string"
-                                            },
-                                            "username": {
-                                                "type": "string"
-                                            }
-                                        }
-                                    }
+                                    "$ref": "#definitions/ListAllClients"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Token Missing",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/TokenMissing"
                                 }
                             }
                         }
@@ -384,23 +390,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "message": {
-                                            "type": "string"
-                                        },
-                                        "client": {
-                                            "type": "object",
-                                            "properties": {
-                                                "email": {
-                                                    "type": "string"
-                                                },
-                                                "username": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    }
+                                    "$ref": "#definitions/ShowClientByID"
                                 }
                             }
                         }
@@ -439,32 +429,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "username": {
-                                            "type": "string"
-                                        },
-                                        "deliveries": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "id": {
-                                                        "type": "string"
-                                                    },
-                                                    "item_name": {
-                                                        "type": "string"
-                                                    },
-                                                    "created_at": {
-                                                        "type": "string"
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
+                                    "$ref": "#definitions/DeliveriesByClient"
                                 }
                             }
                         }
@@ -475,6 +440,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#definitions/FailureAuthentication"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Token Missing",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/TokenMissing"
                                 }
                             }
                         }
@@ -514,26 +489,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "message": {
-                                            "type": "string"
-                                        },
-                                        "deliveryman": {
-                                            "type": "object",
-                                            "properties": {
-                                                "id": {
-                                                    "type": "string"
-                                                },
-                                                "email": {
-                                                    "type": "string"
-                                                },
-                                                "username": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    }
+                                    "$ref": "#definitions/DeliverymanCreated"
                                 }
                             }
                         }
@@ -579,32 +535,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "username": {
-                                            "type": "string"
-                                        },
-                                        "deliveries": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "id": {
-                                                        "type": "string"
-                                                    },
-                                                    "item_name": {
-                                                        "type": "string"
-                                                    },
-                                                    "created_at": {
-                                                        "type": "string"
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
+                                    "$ref": "#definitions/DeliveriesByDeliveryman"
                                 }
                             }
                         }
@@ -615,6 +546,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#definitions/FailureAuthentication"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Token Missing",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/TokenMissing"
                                 }
                             }
                         }
@@ -659,26 +600,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "item": {
-                                            "type": "string"
-                                        },
-                                        "client": {
-                                            "type": "object",
-                                            "properties": {
-                                                "username": {
-                                                    "type": "string"
-                                                },
-                                                "id": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    }
+                                    "$ref": "#definitions/DeliveryCreated"
                                 }
                             }
                         }
@@ -689,6 +611,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#definitions/FailureAuthentication"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Token Missing",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/TokenMissing"
                                 }
                             }
                         }
@@ -742,29 +674,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "id": {
-                                                "type": "string"
-                                            },
-                                            "item_name": {
-                                                "type": "string"
-                                            },
-                                            "created_at": {
-                                                "type": "string"
-                                            },
-                                            "client": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "username": {
-                                                        "type": "string"
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
+                                    "$ref": "#definitions/DeliveriesAvailable"
                                 }
                             }
                         }
@@ -775,6 +685,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#definitions/FailureAuthentication"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Token Missing",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/TokenMissing"
                                 }
                             }
                         }
@@ -821,21 +741,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id_delivery": {
-                                            "type": "string"
-                                        },
-                                        "item": {
-                                            "type": "string"
-                                        },
-                                        "client": {
-                                            "type": "string"
-                                        },
-                                        "deliveryman": {
-                                            "type": "string"
-                                        }
-                                    }
+                                    "$ref": "#definitions/UpdateDeliveryman"
                                 }
                             }
                         }
@@ -845,15 +751,17 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "example": {
-                                        "message": "Delivery not found!"
-                                    }
+                                    "$ref": "#definitions/DeliveryNotFound"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Token Missing",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/TokenMissing"
                                 }
                             }
                         }
@@ -900,27 +808,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id_delivery": {
-                                            "type": "string"
-                                        },
-                                        "client": {
-                                            "type": "string"
-                                        },
-                                        "item": {
-                                            "type": "string"
-                                        },
-                                        "created_at": {
-                                            "type": "string"
-                                        },
-                                        "end_date": {
-                                            "type": "string"
-                                        },
-                                        "deliveryman": {
-                                            "type": "string"
-                                        }
-                                    }
+                                    "$ref": "#definitions/UpdateEndDateDelivery"
                                 }
                             }
                         }
@@ -931,6 +819,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#definitions/FailureAuthentication"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Token Missing",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/TokenMissing"
                                 }
                             }
                         }
@@ -1099,6 +997,70 @@
                 "password": "test1234"
             }
         },
+        "ListAllClients": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "username": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "ShowClientByID": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "client": {
+                    "type": "object",
+                    "properties": {
+                        "email": {
+                            "type": "string"
+                        },
+                        "username": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "DeliveriesByClient": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "deliveries": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string"
+                            },
+                            "item_name": {
+                                "type": "string"
+                            },
+                            "created_at": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "AuthClientsSuccessfully": {
             "type": "object",
             "properties": {
@@ -1163,6 +1125,81 @@
                 "password": "pass1234"
             }
         },
+        "DeliverymanCreated": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "deliveryman": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "email": {
+                            "type": "string"
+                        },
+                        "username": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "DeliveriesByDeliveryman": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "deliveries": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string"
+                            },
+                            "item_name": {
+                                "type": "string"
+                            },
+                            "created_at": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "DeliveriesAvailable": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "item_name": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "client": {
+                        "type": "object",
+                        "properties": {
+                            "username": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "Delivery": {
             "type": "object",
             "properties": {
@@ -1172,6 +1209,79 @@
             },
             "example": {
                 "item_name": "notebook"
+            }
+        },
+        "DeliveryCreated": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "item": {
+                    "type": "string"
+                },
+                "client": {
+                    "type": "object",
+                    "properties": {
+                        "username": {
+                            "type": "string"
+                        },
+                        "id": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "UpdateDeliveryman": {
+            "type": "object",
+            "properties": {
+                "id_delivery": {
+                    "type": "string"
+                },
+                "item": {
+                    "type": "string"
+                },
+                "client": {
+                    "type": "string"
+                },
+                "deliveryman": {
+                    "type": "string"
+                }
+            }
+        },
+        "DeliveryNotFound": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "message": "Delivery not found!"
+            }
+        },
+        "UpdateEndDateDelivery": {
+            "type": "object",
+            "properties": {
+                "id_delivery": {
+                    "type": "string"
+                },
+                "client": {
+                    "type": "string"
+                },
+                "item": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "end_date": {
+                    "type": "string"
+                },
+                "deliveryman": {
+                    "type": "string"
+                }
             }
         },
         "TokenMissing": {

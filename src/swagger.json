@@ -59,7 +59,14 @@
                         "description": "Client already exists!"
                     },
                     "500": {
-                        "description": "Internal server error."
+                        "description": "Internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ErrorServer"
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -103,7 +110,14 @@
                         "description": "Users not found!"
                     },
                     "500": {
-                        "description": "Internal server error."
+                        "description": "Internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ErrorServer"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -162,7 +176,14 @@
                         "description": "Client not found!"
                     },
                     "500": {
-                        "description": "Internal server error."
+                        "description": "Internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ErrorServer"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -226,7 +247,14 @@
                         }
                     },
                     "500": {
-                        "description": "Internal server error."
+                        "description": "Internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ErrorServer"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -277,7 +305,14 @@
                         }
                     },
                     "500": {
-                        "description": "Internal server error."
+                        "description": "Internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ErrorServer"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -328,7 +363,14 @@
                         }
                     },
                     "500": {
-                        "description": "Internal server error."
+                        "description": "Internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ErrorServer"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -383,7 +425,14 @@
                         "description": "Deliveryman already exists!"
                     },
                     "500": {
-                        "description": "Internal server error."
+                        "description": "Internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ErrorServer"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -447,7 +496,14 @@
                         }
                     },
                     "500": {
-                        "description": "Internal server error."
+                        "description": "Internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ErrorServer"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -532,7 +588,14 @@
                         }
                     },
                     "500": {
-                        "description": "Internal server error."
+                        "description": "Internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ErrorServer"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -593,7 +656,14 @@
                         }
                     },
                     "500": {
-                        "description": "Internal server error."
+                        "description": "Internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ErrorServer"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -665,7 +735,14 @@
                         }
                     },
                     "500": {
-                        "description": "Internal server error."
+                        "description": "Internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ErrorServer"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -745,7 +822,14 @@
                         }
                     },
                     "500": {
-                        "description": "Internal server error."
+                        "description": "Internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ErrorServer"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -851,6 +935,17 @@
             },
             "example": {
                 "message": "Deliveryman is not responsible for delivery"
+            }
+        },
+        "ErrorServer": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
             }
         }
     },

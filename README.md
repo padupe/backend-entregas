@@ -1,4 +1,4 @@
-[!img](https://github.com/padupe/backend-entregas/blob/master/images/backend_entregas.svg)
+![img](https://github.com/padupe/backend-entregas/blob/master/images/backend_entregas.svg)
 # Backend Entregas
 
 ## Utilizando a Aplicação

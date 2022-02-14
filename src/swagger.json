@@ -395,7 +395,7 @@
                     "Client"
                 ],
                 "summary": "List all clients",
-                "description": "list all clients registered. Exlusive for Admin.",
+                "description": "list all clients registered. Exclusive for Admin.",
                 "security": [
                     {
                         "bearerAuth": []
@@ -1086,8 +1086,8 @@
                 }
             },
             "example": {
-                "username": "admintest",
-                "password": "testadmin"
+                "username": "admin_app",
+                "password": "testAdminBackend"
             }
         },
         "AuthAdminSuccessfully": {

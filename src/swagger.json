@@ -46,16 +46,6 @@
                             }
                         }
                     },
-                    "403": {
-                        "description": "Token Missing",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#definitions/TokenMissing"
-                                }
-                            }
-                        }
-                    },
                     "500": {
                         "description": "Internal server error.",
                         "content": {

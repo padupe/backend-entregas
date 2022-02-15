@@ -475,6 +475,16 @@
                     "400": {
                         "description": "Client not found!"
                     },
+                    "401": {
+                        "description": "Authentication Failure",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/FailureAuthentication"
+                                }
+                            }
+                        }
+                    },
                     "500": {
                         "description": "Internal server error.",
                         "content": {
@@ -554,7 +564,7 @@
                 }
             }
         },
-        "/deliveryman": {
+        "/deliverymans": {
             "post": {
                 "tags": [
                     "Deliveryman"
@@ -604,7 +614,82 @@
                 }
             }
         },
-        "/deliveryman/deliveries": {
+        "/deliverymans/{id}": {
+            "get": {
+                "tags": [
+                    "Deliveryman"
+                ],
+                "summary": "Get a Deliveryman",
+                "description": "Get a Deliveryman by ID. Exclusive for Admin",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Deliveryman ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Deliveryman found with successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ShowDeliverymanByID"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Deliveryman not found!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Deliveryman not found!"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authentication Failure",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/FailureAuthentication"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ErrorServer"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/deliverymans/deliveries": {
             "get": {
                 "tags": [
                     "Deliveryman"
@@ -1270,6 +1355,32 @@
                 }
             }
         },
+        "ShowDeliverymanByID": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "deliveryman": {
+                    "type": "object",
+                    "properties": {
+                        "email": {
+                            "type": "string"
+                        },
+                        "username": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "example": {
+                "message": "Deliveryman found with successfull",
+                "deliveryman": {
+                    "email": "deafault@email.com",
+                    "username": "padupeEntregador"
+                }
+            }
+        },
         "DeliveriesByDeliveryman": {
             "type": "object",
             "properties": {
@@ -1460,6 +1571,10 @@
                 "message": {
                     "type": "string"
                 }
+            },
+            "example": {
+                "status": "error",
+                "message": "Internal server error - { description_error }"
             }
         },
         "DeliverymanExists": {

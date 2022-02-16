@@ -1,6 +1,9 @@
 ![img](https://github.com/padupe/backend-entregas/blob/master/images/backend_entregas.svg)
 # Backend Entregas
 
+## MER (Modelo Entidade Relacionamento)
+![img](https://github.com/padupe/backend-entregas/blob/master/images/mer.svg)
+
 ## Utilizando a Aplicação
 
 **Requisitos**:

@@ -412,6 +412,16 @@
                             }
                         }
                     },
+                    "401": {
+                        "description": "Authentication Failure",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/FailureAuthentication"
+                                }
+                            }
+                        }
+                    },
                     "403": {
                         "description": "Token Missing",
                         "content": {
@@ -600,6 +610,63 @@
                                 }
                             }
                         }
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ErrorServer"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Deliveryman"
+                ],
+                "summary": "List all deliverymans",
+                "description": "list all deliverymans registered. Exclusive for Admin.",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucess",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/ListAllDeliverymans"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authentication Failure",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/FailureAuthentication"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Token Missing",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/TokenMissing"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Users not found!"
                     },
                     "500": {
                         "description": "Internal server error.",
@@ -1220,7 +1287,19 @@
                         "type": "string"
                     }
                 }
-            }
+            },
+            "example": [
+                {
+                    "id": "030740e6-5c40-46b6-b407-e6c963444006",
+                    "email": "userone@email.com",
+                    "username": "clientone"
+                },
+                {
+                    "id": "030740e6-5c40-47c7-c408-e6c963444007",
+                    "email": "usertwo@email.com",
+                    "username": "clienttwo"
+                }
+            ]
         },
         "ShowClientByID": {
             "type": "object",
@@ -1267,6 +1346,22 @@
                         }
                     }
                 }
+            },
+            "example": {
+                "id": "030740e6-5c40-46b6-b407-e6c963444006",
+                "username": "clientone",
+                "deliveries": [
+                    {
+                        "id": "030740e6-5c40-46b6-b407-e6c963444006",
+                        "item_name": "Item Test One",
+                        "created_at": "2022-02-13T23:21:05.788Z"
+                    },
+                    {
+                        "id": "030740e6-5c40-47c7-c408-e6c963444007",
+                        "item_name": "Item Test Two",
+                        "created_at": "2022-02-14T01:06:53.536Z"
+                    }
+                ]
             }
         },
         "AuthClientsSuccessfully": {
@@ -1353,6 +1448,14 @@
                         }
                     }
                 }
+            },
+            "example": {
+                "message": "Deliveryman registered successfully",
+                "deliveryman": {
+                    "id": "030740e6-5c40-46b6-b407-e6c963444006",
+                    "email": "deliverymanone@email.com",
+                    "username": "deliveryone"
+                }
             }
         },
         "ShowDeliverymanByID": {
@@ -1380,6 +1483,35 @@
                     "username": "padupeEntregador"
                 }
             }
+        },
+        "ListAllDeliverymans": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "username": {
+                        "type": "string"
+                    }
+                }
+            },
+            "example": [
+                {
+                    "id": "030740e6-5c40-46b6-b407-e6c963444006",
+                    "email": "deliverymanone@email.com",
+                    "username": "deliveryone"
+                },
+                {
+                    "id": "030740e6-5c40-47c7-c408-e6c963444007",
+                    "email": "deliverymantwo@email.com",
+                    "username": "deliverytwo"
+                }
+            ]
         },
         "DeliveriesByDeliveryman": {
             "type": "object",

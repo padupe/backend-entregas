@@ -2,10 +2,10 @@
 # Backend Entregas
 
 ## MER (Modelo Entidade Relacionamento)
-<div>
+<div align="center">
       <img align="center" alt="MER-Backend-Entregas" src="https://github.com/padupe/backend-entregas/blob/master/images/mer.svg">     
 </div>
-![img]()
+
 
 ## Utilizando a Aplicação
 

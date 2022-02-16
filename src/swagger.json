@@ -279,7 +279,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Client found with successfull",
+                        "description": "Profile deleted with successfull",
                         "content": {
                             "application/json": {
                                 "schema": {

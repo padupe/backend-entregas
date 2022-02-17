@@ -61,6 +61,11 @@ Rodar localmente:
 yarn dev
 ```
 
+Para realizar o build:
+```
+yarn build
+```
+
 ### Banco de Dados
 
 Comando para popular o Banco de Dados (para testes):

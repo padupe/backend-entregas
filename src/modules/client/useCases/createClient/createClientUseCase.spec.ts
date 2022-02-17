@@ -13,7 +13,7 @@ afterAll(async () => {
     await populateDataBase();
 });
 
-let createClientUseCase = new CreateClientUseCase();
+const createClientUseCase = new CreateClientUseCase();
 
 const clientTest = {
     email: "newclient@test.com",

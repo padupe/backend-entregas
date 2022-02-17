@@ -1,13 +1,39 @@
 import { prisma } from "./prismaClient";
 import { hash } from "bcrypt";
 
-async function main() {
+export const adminApp = {
+  email: "admin@test.com",
+  username: "admin_app",
+  password: process.env.PASSWORD_ADMIN
+}
+
+export const clientDefault = {
+  email: "default@email.com",
+  username: "padupe",
+  password: process.env.PASSWORD_DEFAULT_CLIENT
+}
+
+export const DeliverymanDefault = {
+  email: "default@email.com",
+  username: "padupeEntregador",
+  password: process.env.PASSWORD_DELIVERYMAN_DEFAULT
+}
+
+export async function clearDataBase() {
+  await prisma.deliveries.deleteMany({ where: {} });
+  await prisma.deliverymans.deleteMany({ where: {} });
+  await prisma.clients.deleteMany({ where: {} });
+  await prisma.admin.deleteMany({ where: {} });
+  await prisma.profiles.deleteMany({ where: {} });
+}
+
+export async function populateDataBase() {
 
   const admin = await prisma.admin.create({
       data: {
-          email: "admin@test.com",
-          username: "admin_app",
-          password: await hash(String(process.env.PASSWORD_ADMIN), 10),
+          email: adminApp.email,
+          username: adminApp.username,
+          password: await hash(String(adminApp.password), 10),
       }
   })
 
@@ -27,11 +53,11 @@ async function main() {
     ]
   })
 
-  const clientDefault = await prisma.clients.create({
+  const client = await prisma.clients.create({
     data: {
-      email: "default@email.com",
-      username: "padupe",
-      password: await hash(String(process.env.PASSWORD_DEFAULT_CLIENT), 10)
+      email: clientDefault.email,
+      username: clientDefault.username,
+      password: await hash(String(clientDefault.password), 10)
     }
   })
 
@@ -43,18 +69,18 @@ async function main() {
     ]
   })
 
-  const deliverymanDefault = prisma.deliverymans.create({
+  const deliveryman = prisma.deliverymans.create({
     data: {
-      email: "default@email.com",
-      username: "padupeEntregador",
-      password: await hash(String(process.env.PASSWORD_DELIVERYMAN_DEFAULT), 10)
+      email: DeliverymanDefault.email,
+      username: DeliverymanDefault.username,
+      password: await hash(String(DeliverymanDefault.password), 10)
     }
   })
 
   const deliverieDefault = await prisma.deliveries.create({
     data: {
       item_name: "Item Test",
-      id_client: clientDefault.id
+      id_client: client.id
     }
   })
 
@@ -64,16 +90,22 @@ async function main() {
       id: deliverieDefault.id
     },
     data: {
-      id_deliveryman: (await deliverymanDefault).id
+      id_deliveryman: (await deliveryman).id
     }
   })
 }
 
-main()
-  .catch((e) => {
-    console.error(e)
-    process.exit(1)
-  })
-  .finally(async () => {
-    await prisma.$disconnect()
-  })
+async function main() {
+  await populateDataBase();
+}
+
+if (process.env.NODE_ENV !== "test") {
+  main()
+    .catch((e) => {
+      console.error(e)
+      process.exit(1)
+    })
+    .finally(async () => {
+      await prisma.$disconnect()
+    })
+}

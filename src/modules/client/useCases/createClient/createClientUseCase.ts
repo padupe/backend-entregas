@@ -47,7 +47,7 @@ export class CreateClientUseCase {
             message: "Client registered successfully",
             client: {
                 id: newClient.id,
-                email: newClient.id,
+                email: newClient.email,
                 username: newClient.username
             }
         };

@@ -254,7 +254,7 @@
                 }
             }
         },
-        "profiles/delete/{id}": {
+        "/profiles/delete/{id}": {
             "delete": {
                 "tags": [
                     "Profile"

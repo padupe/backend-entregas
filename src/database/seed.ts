@@ -96,6 +96,7 @@ export async function populateDataBase() {
 }
 
 async function main() {
+  await clearDataBase();
   await populateDataBase();
 }
 

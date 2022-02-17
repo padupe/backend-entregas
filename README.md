@@ -39,17 +39,27 @@ yarn install
 docker-compose -f docker/docker-compose.yaml up -d
 ```
 
-6. Popule o Banco de Dados
+6. Rode o comando para instanciar o Prisma
+```
+yarn prisma generate
+```
+
+7. Rode o comando para rodar as migrations
+```
+yarn prisma migrate dev
+```
+
+8. Popule o Banco de Dados
 ```
 yarn seed
 ```
 
-7. Rode a Aplicação
+9. Rode a Aplicação
 ```
 yarn dev
 ```
 
-8. Rode os testes
+10. Rode os testes
 ```
 yarn test
 ```

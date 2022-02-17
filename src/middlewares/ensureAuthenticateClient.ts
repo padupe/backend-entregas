@@ -19,8 +19,7 @@ export async function ensureAuthenticateClient(request: Request, response: Respo
     const [,token] = authHeader.split(" ");
 
     try {
-        //@ts-ignore
-        const { sub } = verify(token, process.env.SECRET_KEY) as IPayload;
+        const { sub } = verify(token, String(process.env.SECRET_KEY)) as IPayload;
 
         const verifyClient = await prisma.clients.findUnique({
             where: {

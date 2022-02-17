@@ -7,8 +7,7 @@ async function main() {
       data: {
           email: "admin@test.com",
           username: "admin_app",
-          //@ts-ignore
-          password: await hash(process.env.PASSWORD_ADMIN, 10),
+          password: await hash(String(process.env.PASSWORD_ADMIN), 10),
       }
   })
 
@@ -22,12 +21,9 @@ async function main() {
 
   const clients = await prisma.clients.createMany({
     data: [
-      //@ts-ignore
-      { email: "userone@email.com", username: "clientone", password: await hash(process.env.PASSWORD_USER_1, 10)},
-      //@ts-ignore
-      { email: "usertwo@email.com", username: "clienttwo", password: await hash(process.env.PASSWORD_USER_2, 10)},
-      //@ts-ignore
-      { email: "userthree@email.com", username: "clientthree", password: await hash(process.env.PASSWORD_USER_3, 10)}
+      { email: "clientone@email.com", username: "clientone", password: await hash(String(process.env.PASSWORD_CLIENT_1), 10)},
+      { email: "clienttwo@email.com", username: "clienttwo", password: await hash(String(process.env.PASSWORD_CLIENT_2), 10)},
+      { email: "clientthree@email.com", username: "clientthree", password: await hash(String(process.env.PASSWORD_CLIENT_3), 10)}
     ]
   })
 
@@ -35,18 +31,15 @@ async function main() {
     data: {
       email: "default@email.com",
       username: "padupe",
-      password: await hash("test1234", 10)
+      password: await hash(String(process.env.PASSWORD_DEFAULT_CLIENT), 10)
     }
   })
 
   const deliverymans = await prisma.deliverymans.createMany({
     data: [
-      //@ts-ignore
-      { email: "deliverymanone@email.com", username: "deliveryone", password: await hash(process.env.PASSWORD_DELIVERYMAN_1, 10)},
-      //@ts-ignore
-      { email: "deliverymantwo@email.com", username: "deliverytwo", password: await hash(process.env.PASSWORD_DELIVERYMAN_2, 10)},
-      //@ts-ignore
-      { email: "deliverymanthree@email.com", username: "deliverythree", password: await hash(process.env.PASSWORD_DELIVERYMAN_3, 10)}
+      { email: "deliverymanone@email.com", username: "deliveryone", password: await hash(String(process.env.PASSWORD_DELIVERYMAN_1), 10)},
+      { email: "deliverymantwo@email.com", username: "deliverytwo", password: await hash(String(process.env.PASSWORD_DELIVERYMAN_2), 10)},
+      { email: "deliverymanthree@email.com", username: "deliverythree", password: await hash(String(process.env.PASSWORD_DELIVERYMAN_3), 10)}
     ]
   })
 
@@ -54,7 +47,7 @@ async function main() {
     data: {
       email: "default@email.com",
       username: "padupeEntregador",
-      password: await hash("test1234", 10)
+      password: await hash(String(process.env.PASSWORD_DELIVERYMAN_DEFAULT), 10)
     }
   })
 

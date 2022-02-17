@@ -18,8 +18,8 @@ export async function ensureAuthenticateAdmin(request: Request, response: Respon
     const [,token] = authHeader.split(" ");
 
     try {
-        //@ts-ignore
-        const { sub } = verify(token, process.env.SECRET_KEY) as IPayload;
+        
+        const { sub } = verify(token, String(process.env.SECRET_KEY)) as IPayload;
 
         const verifyAdmin = await prisma.admin.findUnique({
             where: {

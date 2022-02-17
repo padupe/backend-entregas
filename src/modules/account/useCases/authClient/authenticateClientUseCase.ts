@@ -33,8 +33,7 @@ export class AuthenticateClientUseCase {
             throw new AppError("Username or password invalid!", 401);
         };
 
-        //@ts-ignore
-        const token = sign({username}, process.env.SECRET_KEY, {
+        const token = sign({username}, String(process.env.SECRET_KEY), {
             subject: userAuth.id,
             expiresIn: "1d"
         });

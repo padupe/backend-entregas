@@ -49,6 +49,11 @@ yarn seed
 yarn dev
 ```
 
+8. Rode os testes
+```
+yarn test
+```
+
 ## Documentação
 Confira a documentação [aqui](http://localhost:4444/api-docs/ "aqui")
 > A aplicação deve ter sido iniciada com o comando <code>yarn dev</code>

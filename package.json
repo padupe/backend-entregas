@@ -7,7 +7,7 @@
     "dev": "ts-node-dev --exit-child --transpile-only --ignore-watch node_modules src/server.ts",
     "seed": "ts-node src/database/seed.ts",
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
-    "test": "NODE_ENV=test jest"
+    "test": "NODE_ENV=test jest --runInBand --detectOpenHandles"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.3",

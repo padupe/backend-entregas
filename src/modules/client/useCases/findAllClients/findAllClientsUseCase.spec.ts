@@ -1,7 +1,6 @@
 import { prisma } from "../../../../database/prismaClient";
 import { FindAllClientsUseCase } from "./findAllClientsUseCase";
 
-
 const findAllClientsUseCase = new FindAllClientsUseCase();
 
 describe("List all Clients registered on App", () => {

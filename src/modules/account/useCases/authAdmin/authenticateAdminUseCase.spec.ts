@@ -1,4 +1,3 @@
-import { prisma } from "../../../../database/prismaClient";
 import { adminApp } from "../../../../database/seed";
 import { AppError } from "../../../../shared/errors/appError";
 import { AuthenticateAdminUseCase } from "./authenticateAdminUseCase";
@@ -26,7 +25,7 @@ describe("Autenticate Admin", () => {
         })).rejects.toEqual(new AppError("Username or password invalid!", 401))
     });
 
-    it("Should not be able to authentica a non existent Admin", async () => {
+    it("Should not be able to authenticate a non existent Admin", async () => {
 
         await expect(authenticateAdminUseCase.execute({
             username: "failedAdmin",

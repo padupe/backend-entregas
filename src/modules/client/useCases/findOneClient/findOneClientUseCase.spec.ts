@@ -23,7 +23,7 @@ describe("Find one Client by ID", () => {
         expect(result).toHaveProperty('client');
     });
 
-    it("Should not be able to find one cliente by invalid ID", async () => {
+    it("Should not be able to find one client by invalid ID", async () => {
 
         await expect(findOneClientUseCase.execute({
             id_client: "failed"

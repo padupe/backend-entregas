@@ -12,7 +12,6 @@ export class FindAllDeliverymansUseCase {
             }
         })
 
-        console.log(deliverymans)
         return deliverymans
     }
 }

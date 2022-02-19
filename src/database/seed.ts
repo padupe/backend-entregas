@@ -25,6 +25,11 @@ export const DeliverymanFailure = {
   password: process.env.PASSWORD_DELIVERYMAN_FAILURE
 }
 
+export const ProfileDefault = {
+  type: 99,
+  name: "deletedTest"
+}
+
 export async function clearDataBase() {
   await prisma.deliveries.deleteMany({ where: {} });
   await prisma.deliverymans.deleteMany({ where: {} });
@@ -49,6 +54,13 @@ export async function populateDataBase() {
           { type: 2, name: "Client"},
           { type: 3, name: "Deliveryman"}
       ]
+  })
+
+  const failureProfile = await prisma.profiles.create({
+    data: {
+      type: ProfileDefault.type,
+      name: ProfileDefault.name
+    }
   })
 
   const clients = await prisma.clients.createMany({

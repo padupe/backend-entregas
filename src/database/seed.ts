@@ -19,6 +19,12 @@ export const DeliverymanDefault = {
   password: process.env.PASSWORD_DELIVERYMAN_DEFAULT
 }
 
+export const DeliverymanFailure = {
+  email: "failure@email.com",
+  username: "failureEntregador",
+  password: process.env.PASSWORD_DELIVERYMAN_FAILURE
+}
+
 export async function clearDataBase() {
   await prisma.deliveries.deleteMany({ where: {} });
   await prisma.deliverymans.deleteMany({ where: {} });
@@ -69,11 +75,19 @@ export async function populateDataBase() {
     ]
   })
 
-  const deliveryman = prisma.deliverymans.create({
+  const deliveryman = await prisma.deliverymans.create({
     data: {
       email: DeliverymanDefault.email,
       username: DeliverymanDefault.username,
       password: await hash(String(DeliverymanDefault.password), 10)
+    }
+  })
+
+  const deliverymanFail = await prisma.deliverymans.create({
+    data: {
+      email: DeliverymanFailure.email,
+      username: DeliverymanFailure.username,
+      password: await hash(String(DeliverymanFailure.password), 10)
     }
   })
 

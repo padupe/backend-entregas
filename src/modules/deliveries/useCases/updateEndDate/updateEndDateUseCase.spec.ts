@@ -1,5 +1,5 @@
 import { prisma } from "../../../../database/prismaClient";
-import { clearDataBase, DeliverymanDefault, populateDataBase } from "../../../../database/seed";
+import { clearDataBase, DeliverymanDefault, DeliverymanFailure, populateDataBase } from "../../../../database/seed";
 import { AppError } from "../../../../shared/errors/appError";
 import { UpdateDeliverymanUseCase } from "../updateDeliveryman/updateDeliverymanUseCase";
 import { UpdateEndDateUseCase } from "./updateEndDateUsecase";
@@ -11,43 +11,19 @@ describe("Update end date on a delivery", () => {
 
     it("Should be able to update end date on a delivery", async () => {
 
-        //First Time: Setting deliveryman on a delivery available
-        let deliveryUpdate = await prisma.deliveries.findFirst({
-            where: {
-                end_date: null,
-                id_deliveryman: null
-            }
-        });
-
-        let deliverymanUpdate = await prisma.deliverymans.findUnique({
-            where: {
-                username: DeliverymanDefault.username
-            },
-            select: {
-                id: true
-            }
-        });
-
-        let resultFaseOne = await updateDeliveryman.execute({
-            //@ts-ignore
-            id_delivery: deliveryUpdate?.id,
-            //@ts-ignore
-            id_deliveryman: deliverymanUpdate?.id
-        });
-        
-        // Final Test
-        let deliveryBase = await prisma.deliveries.findFirst({
-            where: {
-                end_date: null
-            }
-        });
-
         let deliverymanBase = await prisma.deliverymans.findUnique({
             where: {
                 username: DeliverymanDefault.username
             },
             select: {
                 id: true
+            }
+        });
+
+        let deliveryBase = await prisma.deliveries.findFirst({
+            where: {
+                end_date: null,
+                id_deliveryman: deliverymanBase?.id
             }
         });
 
@@ -83,4 +59,37 @@ describe("Update end date on a delivery", () => {
             id_deliveryman: deliverymanBase?.id
         })).rejects.toEqual(new AppError("Delivery not found!"))
     });
+
+    it("Should not be able to update end date on a delivery with a deliveryman not authorized", async () => {
+
+        let derymanFailure = await prisma.deliverymans.findUnique({
+            where: {
+                email: DeliverymanFailure.email
+            }
+        })
+
+        let deliverymanBase = await prisma.deliverymans.findUnique({
+            where: {
+                username: DeliverymanDefault.username
+            },
+            select: {
+                id: true
+            }
+        });
+        
+        let deliveryBase = await prisma.deliveries.findFirst({
+            where: {
+                end_date: null,
+                id_deliveryman: deliverymanBase?.id
+            }
+        });
+
+        let id_delivery = String(deliveryBase?.id)
+
+        await expect(updateEndDate.execute({
+            id_delivery,
+            //@ts-ignore
+            id_deliveryman: derymanFailure?.id
+        })).rejects.toEqual(new AppError("Deliveryman is not responsible for delivery", 406))
+    })
 })

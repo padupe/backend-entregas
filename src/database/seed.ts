@@ -84,6 +84,12 @@ export async function populateDataBase() {
     }
   })
 
+  const deliverieEndDate = await prisma.deliveries.create({
+    data: {
+      item_name: "Item Test Two",
+      id_client: client.id,
+    }
+  })
 
   const updateDeliverieDefault = await prisma.deliveries.update({
     where: {

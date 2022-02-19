@@ -1,14 +1,41 @@
 import { prisma } from "../../../../database/prismaClient";
 import { clearDataBase, DeliverymanDefault, populateDataBase } from "../../../../database/seed";
 import { AppError } from "../../../../shared/errors/appError";
+import { UpdateDeliverymanUseCase } from "../updateDeliveryman/updateDeliverymanUseCase";
 import { UpdateEndDateUseCase } from "./updateEndDateUsecase";
 
+const updateDeliveryman = new UpdateDeliverymanUseCase();
 const updateEndDate = new UpdateEndDateUseCase();
 
 describe("Update end date on a delivery", () => {
 
     it("Should be able to update end date on a delivery", async () => {
 
+        //First Time: Setting deliveryman on a delivery available
+        let deliveryUpdate = await prisma.deliveries.findFirst({
+            where: {
+                end_date: null,
+                id_deliveryman: null
+            }
+        });
+
+        let deliverymanUpdate = await prisma.deliverymans.findUnique({
+            where: {
+                username: DeliverymanDefault.username
+            },
+            select: {
+                id: true
+            }
+        });
+
+        let resultFaseOne = await updateDeliveryman.execute({
+            //@ts-ignore
+            id_delivery: deliveryUpdate?.id,
+            //@ts-ignore
+            id_deliveryman: deliverymanUpdate?.id
+        });
+        
+        // Final Test
         let deliveryBase = await prisma.deliveries.findFirst({
             where: {
                 end_date: null

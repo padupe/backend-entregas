@@ -79,14 +79,21 @@ export async function populateDataBase() {
 
   const deliverieDefault = await prisma.deliveries.create({
     data: {
-      item_name: "Item Test",
+      item_name: "Item Test One",
+      id_client: client.id
+    }
+  })
+
+  const deliverieAvailable = await prisma.deliveries.create({
+    data: {
+      item_name: "Item Test Two",
       id_client: client.id
     }
   })
 
   const deliverieEndDate = await prisma.deliveries.create({
     data: {
-      item_name: "Item Test Two",
+      item_name: "Item Test Three",
       id_client: client.id,
     }
   })

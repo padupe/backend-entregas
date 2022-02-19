@@ -71,7 +71,7 @@ Confira a documentação [aqui](http://localhost:4444/api-docs/ "aqui")
 > A aplicação deve ter sido iniciada com o comando <code>yarn dev</code>
 
 ## JSON para testes via Insomnia
-Realize o _import_ deste [arquivo](https://github.com/padupe/backend-entregas/blob/master/insomnia/Insomnia_2022-02-17.json "arquivo") no Insomnia.
+Realize o _import_ deste [arquivo](https://github.com/padupe/backend-entregas/blob/master/insomnia/Insomnia.json "arquivo") no Insomnia.
 
 ## Comandos Úteis
 

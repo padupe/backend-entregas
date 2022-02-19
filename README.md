@@ -64,12 +64,15 @@ yarn dev
 yarn test
 ```
 
+> **⚠️ ATENÇÃO:** Assim que os testes são rodados, a base do Banco de Dados é "resetada" dinamicamente, ou seja, o comando <code>yarn seed</code> é rodado de maneira que a base volte ao "estado inicial" e para garantir uma experiência melhor ao "Tester".
+
 ## Documentação
 Confira a documentação [aqui](http://localhost:4444/api-docs/ "aqui")
 > A aplicação deve ter sido iniciada com o comando <code>yarn dev</code>
 
 ## JSON para testes via Insomnia
 Realize o _import_ deste [arquivo](https://github.com/padupe/backend-entregas/blob/master/insomnia/Insomnia_2022-02-17.json "arquivo") no Insomnia.
+
 ## Comandos Úteis
 
 ### Aplicação
@@ -123,4 +126,11 @@ yarn prisma format
 Interface visual para o banco de dados:
 ```
 yarn prisma studio
+```
+
+### Testes Automatizados
+
+Rodar os testes, de maneira que sejam executados um a um:
+```
+yarn test
 ```

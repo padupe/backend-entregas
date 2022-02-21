@@ -9,7 +9,7 @@ const profileTest = {
     name: "profileTest"
 }
 
-describe("Create Client", () => {
+describe("Create Profile", () => {
     
     it("Should be able to create a new Profile", async () => {
 

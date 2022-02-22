@@ -2,9 +2,9 @@ import "dotenv/config";
 import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
 import swagger from "swagger-ui-express";
-import { AppError } from "./shared/errors/appError";
-import { router } from "./shared/infra/http/routes";
-import swaggerConfig from "./swagger.json"
+import { AppError } from "../../errors/appError";
+import { router } from "./routes";
+import swaggerConfig from "../../../swagger.json"
 
 const app = express();
 
@@ -26,4 +26,4 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
     });
 });
 
-app.listen(4444, () => console.log('Server is running!'));
+export { app };

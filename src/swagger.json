@@ -59,18 +59,18 @@
                 }
             }
         },
-        "/authenticate/clients": {
+        "/authenticate/customers": {
             "post": {
                 "tags": [
                     "Authenticate"
                 ],
-                "summary": "Client Authentication",
-                "description": "Authenticate Client on Platafform",
+                "summary": "Customer Authentication",
+                "description": "Authenticate Customer on Platafform",
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#definitions/AuthClients"
+                                "$ref": "#definitions/AuthCustomers"
                             }
                         }
                     }
@@ -81,7 +81,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#definitions/AuthClientsSuccessfully"
+                                    "$ref": "#definitions/AuthCustomersSuccessfully"
                                 }
                             }
                         }
@@ -270,7 +270,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Client ID",
+                        "description": "Customer ID",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -341,18 +341,18 @@
                 }
             }
         },
-        "/clients": {
+        "/customers": {
             "post": {
                 "tags": [
-                    "Client"
+                    "Customer"
                 ],
-                "summary": "Create a Client",
-                "description": "Create a new Client",
+                "summary": "Create a Customer",
+                "description": "Create a new Customer",
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#definitions/Clients"
+                                "$ref": "#definitions/Customers"
                             }
                         }
                     }
@@ -363,17 +363,17 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#definitions/ClientCreated"
+                                    "$ref": "#definitions/CustomerCreated"
                                 }
                             }
                         }
                     },
                     "400": {
-                        "description": "Client already exists!",
+                        "description": "Customer already exists!",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#definitions/ClientExists"
+                                    "$ref": "#definitions/CustomerExists"
                                 }
                             }
                         }
@@ -392,10 +392,10 @@
             },
             "get": {
                 "tags": [
-                    "Client"
+                    "Customer"
                 ],
-                "summary": "List all clients",
-                "description": "list all clients registered. Exclusive for Admin.",
+                "summary": "List all customers",
+                "description": "list all customers registered. Exclusive for Admin.",
                 "security": [
                     {
                         "bearerAuth": []
@@ -407,7 +407,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#definitions/ListAllClients"
+                                    "$ref": "#definitions/ListAllCustomers"
                                 }
                             }
                         }
@@ -448,13 +448,13 @@
                 }
             }
         },
-        "/clients/{id}": {
+        "/customers/{id}": {
             "get": {
                 "tags": [
-                    "Client"
+                    "Customer"
                 ],
-                "summary": "Get a Client",
-                "description": "Get a Client by ID. Exclusive for Admin",
+                "summary": "Get a Customer",
+                "description": "Get a Customer by ID. Exclusive for Admin",
                 "security": [
                     {
                         "bearerAuth": []
@@ -464,7 +464,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Client ID",
+                        "description": "Customer ID",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -473,17 +473,17 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Client found with successfull",
+                        "description": "Customer found with successfull",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#definitions/ShowClientByID"
+                                    "$ref": "#definitions/ShowCCustomerByID"
                                 }
                             }
                         }
                     },
                     "400": {
-                        "description": "Client not found!"
+                        "description": "Customer not found!"
                     },
                     "401": {
                         "description": "Authentication Failure",
@@ -508,13 +508,13 @@
                 }
             }
         },
-        "/clients/deliveries": {
+        "/customers/deliveries": {
             "get": {
                 "tags": [
-                    "Client"
+                    "Customer"
                 ],
-                "summary": "List all deliveries by Client",
-                "description": "List all deliveries by Client authenticated",
+                "summary": "List all deliveries by Customer",
+                "description": "List all deliveries by Customer authenticated",
                 "security": [
                     {
                         "bearerAuth": []
@@ -526,7 +526,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#definitions/DeliveriesByClient"
+                                    "$ref": "#definitions/DeliveriesByCustomer"
                                 }
                             }
                         }
@@ -1145,7 +1145,7 @@
             },
             "example": {
                 "message": "Profile registered successfully",
-                "client": {
+                "customer": {
                     "id": "030740e6-5c40-46b6-b407-e6c963444006",
                     "name": "example",
                     "type": 9
@@ -1178,7 +1178,7 @@
                 }
             }
         },
-        "Clients": {
+        "Customers": {
             "type": "object",
             "properties": {
                 "email": {
@@ -1197,13 +1197,13 @@
                 "password": "pass1234"
             }
         },
-        "ClientCreated": {
+        "CustomerCreated": {
             "type": "object",
             "properties": {
                 "message": {
                     "type": "string"
                 },
-                "client": {
+                "customer": {
                     "type": "object",
                     "properties": {
                         "id": {
@@ -1219,8 +1219,8 @@
                 }
             },
             "example": {
-                "message": "Client registered successfully",
-                "client": {
+                "message": "Customer registered successfully",
+                "customer": {
                     "id": "030740e6-5c40-46b6-b407-e6c963444006",
                     "email": "test@email.com",
                     "username": "testusername"
@@ -1257,7 +1257,7 @@
                 "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
             }
         },
-        "AuthClients": {
+        "AuthCustomers": {
             "type": "object",
             "properties": {
                 "username": {
@@ -1272,7 +1272,7 @@
                 "password": "test1234"
             }
         },
-        "ListAllClients": {
+        "ListAllCustomers": {
             "type": "array",
             "items": {
                 "type": "object",
@@ -1292,22 +1292,22 @@
                 {
                     "id": "030740e6-5c40-46b6-b407-e6c963444006",
                     "email": "userone@email.com",
-                    "username": "clientone"
+                    "username": "customerone"
                 },
                 {
                     "id": "030740e6-5c40-47c7-c408-e6c963444007",
                     "email": "usertwo@email.com",
-                    "username": "clienttwo"
+                    "username": "customertwo"
                 }
             ]
         },
-        "ShowClientByID": {
+        "ShowCustomerByID": {
             "type": "object",
             "properties": {
                 "message": {
                     "type": "string"
                 },
-                "client": {
+                "customer": {
                     "type": "object",
                     "properties": {
                         "email": {
@@ -1320,7 +1320,7 @@
                 }
             }
         },
-        "DeliveriesByClient": {
+        "DeliveriesByCustomer": {
             "type": "object",
             "properties": {
                 "id": {
@@ -1349,7 +1349,7 @@
             },
             "example": {
                 "id": "030740e6-5c40-46b6-b407-e6c963444006",
-                "username": "clientone",
+                "username": "customerone",
                 "deliveries": [
                     {
                         "id": "030740e6-5c40-46b6-b407-e6c963444006",
@@ -1364,7 +1364,7 @@
                 ]
             }
         },
-        "AuthClientsSuccessfully": {
+        "AuthCustomersSuccessfully": {
             "type": "object",
             "properties": {
                 "message": {
@@ -1555,7 +1555,7 @@
                     "created_at": {
                         "type": "string"
                     },
-                    "client": {
+                    "customer": {
                         "type": "object",
                         "properties": {
                             "username": {
@@ -1586,7 +1586,7 @@
                 "item": {
                     "type": "string"
                 },
-                "client": {
+                "customer": {
                     "type": "object",
                     "properties": {
                         "username": {
@@ -1608,7 +1608,7 @@
                 "item": {
                     "type": "string"
                 },
-                "client": {
+                "customer": {
                     "type": "string"
                 },
                 "deliveryman": {
@@ -1633,7 +1633,7 @@
                 "id_delivery": {
                     "type": "string"
                 },
-                "client": {
+                "customer": {
                     "type": "string"
                 },
                 "item": {
@@ -1720,7 +1720,7 @@
                 "message": "Deliveryman already exists!"
             }
         },
-        "ClientExists": {
+        "CustomerExists": {
             "type": "object",
             "properties": {
                 "message": {
@@ -1728,7 +1728,7 @@
                 }
             },
             "example": {
-                "message": "Client already exists!"
+                "message": "Customer already exists!"
             }
         },
         "ProfileExists": {

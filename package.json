@@ -4,8 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --exit-child --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register --exit-child --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
     "seed": "ts-node src/database/seed.ts",
+    "migrate:run": "npx prisma migrate dev",
+    "migrate:reset": "npx prisma migrate reset && ts-node src/database/seed.ts",
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
     "test": "NODE_ENV=test jest --runInBand --detectOpenHandles"
   },

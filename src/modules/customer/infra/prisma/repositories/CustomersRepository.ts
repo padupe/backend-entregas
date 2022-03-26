@@ -72,3 +72,5 @@ class CustomersRepository implements ICustomersRepository {
         return deliveriesByCustomer
     }
 }
+
+export { CustomersRepository }

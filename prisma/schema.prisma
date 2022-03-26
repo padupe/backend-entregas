@@ -22,7 +22,7 @@ model Deliverymans {
   @@map("deliverymans")
 }
 
-model Clients {
+model Customers {
   id           String @id @default(uuid())
   profile_type Int    @default(2)
   email        String @unique
@@ -31,18 +31,18 @@ model Clients {
 
   deliveries Deliveries[]
 
-  @@map("clients")
+  @@map("customers")
 }
 
 model Deliveries {
   id             String    @id @default(uuid())
   item_name      String
-  id_client      String
+  id_customer    String
   id_deliveryman String?
   created_at     DateTime  @default(now())
   end_date       DateTime?
 
-  client      Clients       @relation(fields: [id_client], references: [id])
+  customer    Customers     @relation(fields: [id_customer], references: [id])
   deliveryman Deliverymans? @relation(fields: [id_deliveryman], references: [id])
 
   @@map("deliveries")

@@ -36,6 +36,18 @@ class CustomersRepository implements ICustomersRepository {
         //@ts-ignore
         return customers
     }
+
+    async findByEmail(email: string): Promise<Customers> {
+
+        const customer = await prisma.customers.findUnique({
+            where: {
+                email
+            }
+        })
+
+        //@ts-ignore
+        return customer
+    }
     
     async findById(id_customer: string): Promise<Customers> {
         
@@ -44,6 +56,18 @@ class CustomersRepository implements ICustomersRepository {
                 id: id_customer
             }
         })
+
+        //@ts-ignore
+        return customer
+    }
+
+    async findByUsername(username: string): Promise<Customers> {
+        
+        const customer = await prisma.customers.findUnique({
+            where: {
+                username
+            }
+        });
 
         //@ts-ignore
         return customer

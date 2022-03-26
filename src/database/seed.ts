@@ -1,5 +1,5 @@
 import { prisma } from "./prismaClient";
-import { hash } from "bcrypt";
+import { hashPassword } from "../helpers/bcrypt";
 
 export const adminApp = {
   email: "admin@test.com",
@@ -7,7 +7,7 @@ export const adminApp = {
   password: process.env.PASSWORD_ADMIN
 }
 
-export const clientDefault = {
+export const customerDefault = {
   email: "default@email.com",
   username: "padupe",
   password: process.env.PASSWORD_DEFAULT_CLIENT
@@ -33,7 +33,7 @@ export const ProfileDefault = {
 export async function clearDataBase() {
   await prisma.deliveries.deleteMany({ where: {} });
   await prisma.deliverymans.deleteMany({ where: {} });
-  await prisma.clients.deleteMany({ where: {} });
+  await prisma.customers.deleteMany({ where: {} });
   await prisma.admin.deleteMany({ where: {} });
   await prisma.profiles.deleteMany({ where: {} });
 }
@@ -44,14 +44,14 @@ export async function populateDataBase() {
       data: {
           email: adminApp.email,
           username: adminApp.username,
-          password: await hash(String(adminApp.password), 10),
+          password: await hashPassword(String(adminApp.password)),
       }
   })
 
   const profiles = await prisma.profiles.createMany({
       data: [
           { type: 1, name: "Admin"},
-          { type: 2, name: "Client"},
+          { type: 2, name: "Customer"},
           { type: 3, name: "Deliveryman"}
       ]
   })
@@ -63,27 +63,27 @@ export async function populateDataBase() {
     }
   })
 
-  const clients = await prisma.clients.createMany({
+  const customers = await prisma.customers.createMany({
     data: [
-      { email: "clientone@email.com", username: "clientone", password: await hash(String(process.env.PASSWORD_CLIENT_1), 10)},
-      { email: "clienttwo@email.com", username: "clienttwo", password: await hash(String(process.env.PASSWORD_CLIENT_2), 10)},
-      { email: "clientthree@email.com", username: "clientthree", password: await hash(String(process.env.PASSWORD_CLIENT_3), 10)}
+      { email: "customerone@email.com", username: "customerone", password: await hashPassword(String(process.env.PASSWORD_CUSTOMER_1))},
+      { email: "customertwo@email.com", username: "customertwo", password: await hashPassword(String(process.env.PASSWORD_CUSTOMER_2))},
+      { email: "customerthree@email.com", username: "customerthree", password: await hashPassword(String(process.env.PASSWORD_CUSTOMER_3))}
     ]
   })
 
-  const client = await prisma.clients.create({
+  const customer = await prisma.customers.create({
     data: {
-      email: clientDefault.email,
-      username: clientDefault.username,
-      password: await hash(String(clientDefault.password), 10)
+      email: customerDefault.email,
+      username: customerDefault.username,
+      password: await hashPassword(String(customerDefault.password))
     }
   })
 
   const deliverymans = await prisma.deliverymans.createMany({
     data: [
-      { email: "deliverymanone@email.com", username: "deliveryone", password: await hash(String(process.env.PASSWORD_DELIVERYMAN_1), 10)},
-      { email: "deliverymantwo@email.com", username: "deliverytwo", password: await hash(String(process.env.PASSWORD_DELIVERYMAN_2), 10)},
-      { email: "deliverymanthree@email.com", username: "deliverythree", password: await hash(String(process.env.PASSWORD_DELIVERYMAN_3), 10)}
+      { email: "deliverymanone@email.com", username: "deliveryone", password: await hashPassword(String(process.env.PASSWORD_DELIVERYMAN_1))},
+      { email: "deliverymantwo@email.com", username: "deliverytwo", password: await hashPassword(String(process.env.PASSWORD_DELIVERYMAN_2))},
+      { email: "deliverymanthree@email.com", username: "deliverythree", password: await hashPassword(String(process.env.PASSWORD_DELIVERYMAN_3))}
     ]
   })
 
@@ -91,7 +91,7 @@ export async function populateDataBase() {
     data: {
       email: DeliverymanDefault.email,
       username: DeliverymanDefault.username,
-      password: await hash(String(DeliverymanDefault.password), 10)
+      password: await hashPassword(String(DeliverymanDefault.password))
     }
   })
 
@@ -99,28 +99,28 @@ export async function populateDataBase() {
     data: {
       email: DeliverymanFailure.email,
       username: DeliverymanFailure.username,
-      password: await hash(String(DeliverymanFailure.password), 10)
+      password: await hashPassword(String(DeliverymanFailure.password))
     }
   })
 
   const deliverieDefault = await prisma.deliveries.create({
     data: {
       item_name: "Item Test One",
-      id_client: client.id
+      id_customer: customer.id
     }
   })
 
   const deliverieAvailable = await prisma.deliveries.create({
     data: {
       item_name: "Item Test Two",
-      id_client: client.id
+      id_customer: customer.id
     }
   })
 
   const deliverieEndDate = await prisma.deliveries.create({
     data: {
       item_name: "Item Test Three",
-      id_client: client.id,
+      id_customer: customer.id,
     }
   })
 

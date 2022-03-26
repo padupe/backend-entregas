@@ -1,12 +1,11 @@
 import { NextFunction, Request, Response } from "express";
-import { AppError } from "../shared/errors/appError";
+import { AppError } from "@shared/errors/appError";
 import { verify } from "jsonwebtoken";
-import { prisma } from "../database/prismaClient";
+import { prisma } from "@database/prismaClient";
 
 interface IPayload {
     sub: string;
 }
-
 
 export async function ensureAuthenticateDeliveryman(request: Request, response: Response, next: NextFunction) {
 

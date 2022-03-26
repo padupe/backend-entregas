@@ -1,5 +1,4 @@
-import { stringify } from "querystring";
-import { prisma } from "../../../../database/prismaClient";
+import { prisma } from "@database/prismaClient";
 import { AppError } from "../../../../shared/errors/appError";
 
 interface IUpdateEndDate {
@@ -9,7 +8,7 @@ interface IUpdateEndDate {
 
 interface IResponseUpdateEndDate {
     id_delivery: string;
-    client: string;
+    customer: string;
     item: string;
     created_at: Date;
     end_date?: Date;
@@ -46,7 +45,7 @@ export class UpdateEndDateUseCase {
                 item_name: true,
                 created_at: true,
                 end_date: true,
-                client: {
+                customer: {
                     select: {
                         username: true,
                     }
@@ -61,7 +60,7 @@ export class UpdateEndDateUseCase {
 
         return {
             id_delivery,
-            client: update.client.username,
+            customer: update.customer.username,
             item: update.item_name,
             created_at: update.created_at,
             //@ts-ignore

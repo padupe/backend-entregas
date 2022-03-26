@@ -1,5 +1,5 @@
-import { prisma } from "../../../../database/prismaClient";
-import { AppError } from "../../../../shared/errors/appError";
+import { prisma } from "@database/prismaClient";
+import { AppError } from "@shared/errors/appError";
 
 
 interface IUpdateDeliveryman {
@@ -10,7 +10,7 @@ interface IUpdateDeliveryman {
 interface IResponseUpdateDeliveryman {
     id_delivery: string;
     item: string;
-    client: string;
+    customer: string;
     deliveryman?: string;
 }
 
@@ -39,7 +39,7 @@ export class UpdateDeliverymanUseCase {
                 id: true,
                 item_name: true,
                 created_at: true,
-                client: {
+                customer: {
                     select: {
                         username: true,
                     }
@@ -55,7 +55,7 @@ export class UpdateDeliverymanUseCase {
         return {
             id_delivery,
             item: result.item_name,
-            client: result.client.username,
+            customer: result.customer.username,
             deliveryman: result.deliveryman?.username
         }
     }

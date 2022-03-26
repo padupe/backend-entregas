@@ -1,47 +1,47 @@
-import { prisma } from "../../../../database/prismaClient";
-import { AppError } from "../../../../shared/errors/appError";
+import { prisma } from "@database/prismaClient";
+import { AppError } from "@shared/errors/appError";
 
 interface ICreateDelivery {
     item_name: string;
-    id_client: string;
+    id_customer: string;
 };
 
 interface IResponseDelivery {
     id: string;
     item: string;
-    client: Object;
+    customer: Object;
 }
 
 export class CreateDeliveryUseCase {
 
-    async execute({ item_name, id_client }: ICreateDelivery): Promise<IResponseDelivery> {
+    async execute({ item_name, id_customer }: ICreateDelivery): Promise<IResponseDelivery> {
 
-        const clientDelivery = await prisma.clients.findUnique({
+        const customerDelivery = await prisma.customers.findUnique({
             where: {
-                id: id_client
+                id: id_customer
             }
         });
 
-        if(!clientDelivery){
+        if(!customerDelivery){
             throw new AppError("User not found!", 404);
         };
 
         const newDelivery = await prisma.deliveries.create({
             data: {
                 item_name,
-                id_client
+                id_customer
             },
             include: {
-                client: true
+                customer: true
             }
         });
         
         return {
             id: newDelivery.id,
             item: newDelivery.item_name,
-            client: {
-                username: clientDelivery?.username,
-                id: newDelivery.id_client
+            customer: {
+                username: customerDelivery?.username,
+                id: newDelivery.id_customer
             }
         }
     };

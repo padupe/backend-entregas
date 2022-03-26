@@ -1,14 +1,14 @@
 import { NextFunction, Request, Response } from "express";
-import { AppError } from "../shared/errors/appError";
+import { AppError } from "@shared/errors/appError";
 import { verify } from "jsonwebtoken";
-import { prisma } from "../database/prismaClient";
+import { prisma } from "@database/prismaClient";
 
 interface IPayload {
     sub: string;
 }
 
 
-export async function ensureAuthenticateClient(request: Request, response: Response, next: NextFunction) {
+export async function ensureAuthenticateCustomer(request: Request, response: Response, next: NextFunction) {
 
     const authHeader = request.headers.authorization;
 
@@ -21,17 +21,17 @@ export async function ensureAuthenticateClient(request: Request, response: Respo
     try {
         const { sub } = verify(token, String(process.env.SECRET_KEY)) as IPayload;
 
-        const verifyClient = await prisma.clients.findUnique({
+        const verifyCustomer = await prisma.customers.findUnique({
             where: {
                 id: sub
             }
         })
 
-        if(!verifyClient) {
+        if(!verifyCustomer) {
             throw new AppError("Invalid Token", 401)
         }
 
-        request.id_client = sub;
+        request.id_customer = sub;
 
         return next();
 

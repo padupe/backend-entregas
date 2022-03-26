@@ -1,6 +1,6 @@
-import { prisma } from "../../../../database/prismaClient";
-import { DeliverymanDefault } from "../../../../database/seed";
-import { AppError } from "../../../../shared/errors/appError";
+import { prisma } from "@database/prismaClient";
+import { DeliverymanDefault } from "@database/seed";
+import { AppError } from "@shared/errors/appError";
 import { UpdateDeliverymanUseCase } from "./updateDeliverymanUseCase";
 
 const updateDeliveryman = new UpdateDeliverymanUseCase();
@@ -34,7 +34,7 @@ describe("Update Deliveryman on available delivery", () => {
 
         expect(result).toHaveProperty('id_delivery');
         expect(result).toHaveProperty('item');
-        expect(result).toHaveProperty('client');
+        expect(result).toHaveProperty('customer');
         expect(result).toHaveProperty('deliveryman');
     });
 

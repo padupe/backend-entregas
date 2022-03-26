@@ -9,7 +9,7 @@ export async function verifyPassword(password: string, comparePassword: string) 
     const result = await compare(password, comparePassword)
     
     if (result == false) {
-        throw new AppError("User or Password Invalids", 401)
+        throw new AppError("Username or password invalid!", 401)
     }
 
     return result

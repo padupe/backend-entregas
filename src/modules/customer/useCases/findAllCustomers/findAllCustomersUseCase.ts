@@ -1,10 +1,10 @@
 import { prisma } from "@database/prismaClient";
 
-export class FindAllDeliverymansUseCase {
+export class FindAllCustomersUseCase {
 
-    async execute(){
+    async execute() {
 
-        const deliverymans = await prisma.deliverymans.findMany({
+        const customers = await prisma.customers.findMany({
             select: {
                 id: true,
                 email: true,
@@ -12,6 +12,6 @@ export class FindAllDeliverymansUseCase {
             }
         })
 
-        return deliverymans
+        return customers;
     }
 }

@@ -1,5 +1,5 @@
-import { prisma } from "../../../../database/prismaClient";
-import { clearDataBase, DeliverymanDefault, DeliverymanFailure, populateDataBase } from "../../../../database/seed";
+import { prisma } from "@database/prismaClient";
+import { clearDataBase, DeliverymanDefault, DeliverymanFailure, populateDataBase } from "@database/seed";
 import { AppError } from "../../../../shared/errors/appError";
 import { UpdateDeliverymanUseCase } from "../updateDeliveryman/updateDeliverymanUseCase";
 import { UpdateEndDateUseCase } from "./updateEndDateUsecase";
@@ -35,7 +35,7 @@ describe("Update end date on a delivery", () => {
         });
 
         expect(result).toHaveProperty('id_delivery');
-        expect(result).toHaveProperty('client');
+        expect(result).toHaveProperty('customer');
         expect(result).toHaveProperty('item');
         expect(result).toHaveProperty('created_at');
         expect(result).toHaveProperty('end_date');

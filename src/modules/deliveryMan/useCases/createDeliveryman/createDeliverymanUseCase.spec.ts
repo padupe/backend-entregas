@@ -1,5 +1,5 @@
-import { prisma } from "../../../../database/prismaClient";
-import { AppError } from "../../../../shared/errors/appError";
+import { prisma } from "@database/prismaClient";
+import { AppError } from "@shared/errors/appError";
 import { CreateDeliverymanUseCase } from "./createDeliverymanUseCase";
 
 const createDeliverymanUseCase = new CreateDeliverymanUseCase()
@@ -10,9 +10,9 @@ const deliverymanTest = {
     password: "testPassword"
 }
 
-describe("Create Client", () => {
+describe("Create Customer", () => {
     
-    it("Should be able to create a new Client", async () => {
+    it("Should be able to create a new Customer", async () => {
 
         let newDeliveryman = await createDeliverymanUseCase.execute({
            email: deliverymanTest.email,
@@ -43,7 +43,7 @@ describe("Create Client", () => {
 
         await expect(createDeliverymanUseCase.execute({
              email: deliverymanTest.email,
-             username: "failedClient",
+             username: "failedCustomer",
              password: deliverymanTest.password
         })
         ).rejects.toEqual(new AppError("Deliveryman already exists!"))        

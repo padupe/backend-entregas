@@ -1,4 +1,4 @@
-import { prisma } from "../../../../database/prismaClient";
+import { prisma } from "@database/prismaClient";
 import { FindAllDeliverymansUseCase } from "./findAllDeliverymansUseCase";
 
 const findAllDeliverymans = new FindAllDeliverymansUseCase();

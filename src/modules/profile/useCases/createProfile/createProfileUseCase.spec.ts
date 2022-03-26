@@ -1,5 +1,5 @@
-import { prisma } from "../../../../database/prismaClient";
-import { AppError } from "../../../../shared/errors/appError";
+import { prisma } from "@database/prismaClient";
+import { AppError } from "@shared/errors/appError";
 import { CreateProfileUseCase } from "./createProfileUseCase";
 
 const createProfileUseCase = new CreateProfileUseCase();

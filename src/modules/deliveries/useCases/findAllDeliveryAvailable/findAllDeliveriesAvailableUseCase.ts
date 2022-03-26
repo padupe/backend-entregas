@@ -1,4 +1,4 @@
-import { prisma } from "../../../../database/prismaClient";
+import { prisma } from "@database/prismaClient";
 
 export class FindAllDeliveriesAvailableUseCase {
 
@@ -13,7 +13,7 @@ export class FindAllDeliveriesAvailableUseCase {
                 id: true,
                 item_name: true,
                 created_at: true,
-                client: {
+                customer: {
                     select: {
                         username: true,
                     }

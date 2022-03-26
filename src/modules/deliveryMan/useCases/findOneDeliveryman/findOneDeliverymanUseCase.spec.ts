@@ -1,6 +1,5 @@
-import { prisma } from "../../../../database/prismaClient";
-import { DeliverymanDefault } from "../../../../database/seed";
-import { AppError } from "../../../../shared/errors/appError";
+import { prisma } from "@database/prismaClient";
+import { AppError } from "@shared/errors/appError";
 import { FindOneDeliverymanUseCase } from "./findOneDeliverymanUseCase";
 
 const findOneDeliveryman = new FindOneDeliverymanUseCase();

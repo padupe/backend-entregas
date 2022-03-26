@@ -1,13 +1,13 @@
-import { prisma } from "../../../../database/prismaClient"
-import { AppError } from "../../../../shared/errors/appError"
+import { prisma } from "@database/prismaClient"
+import { AppError } from "@shared/errors/appError"
 
-export class FindAllDeliveriesByClientUseCase {
+export class FindAllDeliveriesByCustomerUseCase {
 
-    async execute(id_client: string) {
+    async execute(id_customer: string) {
 
-        const deliveries = await prisma.clients.findUnique({
+        const deliveries = await prisma.customers.findUnique({
             where: {
-                id: id_client
+                id: id_customer
             },
             select: {
                 id: true,

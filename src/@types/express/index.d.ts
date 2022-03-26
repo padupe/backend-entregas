@@ -1,6 +1,6 @@
 declare namespace Express {
     export interface Request {
-        id_client: string;
+        id_customer: string;
         id_deliveryman: string;
         id_admin: string;
     }

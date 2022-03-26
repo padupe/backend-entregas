@@ -1,5 +1,5 @@
-import { adminApp } from "../../../../database/seed";
-import { AppError } from "../../../../shared/errors/appError";
+import { adminApp } from "@database/seed";
+import { AppError } from "@shared/errors/appError";
 import { AuthenticateAdminUseCase } from "./authenticateAdminUseCase";
 
 const authenticateAdminUseCase = new AuthenticateAdminUseCase();

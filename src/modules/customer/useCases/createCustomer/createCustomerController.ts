@@ -1,17 +1,17 @@
 import { Request, Response } from "express";
-import { CreateClientUseCase } from "./createClientUseCase";
+import { CreateCustomerUseCase } from "./createCustomerUseCase";
 
 
 
-export class CreateClientController {
+export class CreateCustomerController {
 
     async handle(request: Request, response: Response) {
 
         const { email, username, password } = request.body;
 
-        const createClientUseCase = new CreateClientUseCase();
+        const createCustomerUseCase = new CreateCustomerUseCase();
         
-        const result = await createClientUseCase.execute({
+        const result = await createCustomerUseCase.execute({
             email,
             username,
             password

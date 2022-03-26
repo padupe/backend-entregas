@@ -1,5 +1,5 @@
-import { prisma } from "../../../../database/prismaClient";
-import { AppError } from "../../../../shared/errors/appError";
+import { prisma } from "@database/prismaClient";
+import { AppError } from "@shared/errors/appError";
 
 interface IFindOneDeliveryman {
     id_deliveryman: string

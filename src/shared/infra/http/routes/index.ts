@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { clientsRoutes } from "./clients.routes";
+import { customersRoutes } from "./customers.routes";
 import { authenticateRoutes } from "./authenticate.routes";
 import { deliverymansRoutes } from "./deliverymans.routes";
 import { deliveriesRoutes } from "./deliveries.routes";
@@ -7,7 +7,7 @@ import { profilesRoutes } from "./profiles.routes";
 
 const router = Router();
 
-router.use("/clients", clientsRoutes);
+router.use("/customers", customersRoutes);
 router.use("/authenticate", authenticateRoutes);
 router.use("/deliverymans", deliverymansRoutes);
 router.use("/deliveries", deliveriesRoutes);

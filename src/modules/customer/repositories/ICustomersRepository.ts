@@ -7,5 +7,4 @@ export interface ICustomersRepository {
     findByEmail(email: string): Promise<Customers>
     findById(id_customer: string): Promise<Customers>
     findByUsername(username: string): Promise<Customers>
-    findAllDeliveriesByCustomer(id_customer: string): Promise<Customers>
 }

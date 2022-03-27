@@ -45,7 +45,6 @@ class CustomersRepository implements ICustomersRepository {
             }
         })
 
-        //@ts-ignore
         return customer
     }
     
@@ -57,7 +56,6 @@ class CustomersRepository implements ICustomersRepository {
             }
         })
 
-        //@ts-ignore
         return customer
     }
 
@@ -69,7 +67,6 @@ class CustomersRepository implements ICustomersRepository {
             }
         });
 
-        //@ts-ignore
         return customer
     }
     
@@ -92,7 +89,6 @@ class CustomersRepository implements ICustomersRepository {
             }           
         })
 
-        //@ts-ignore
         return deliveriesByCustomer
     }
 }

@@ -26,7 +26,14 @@ class CustomersRepository implements ICustomersRepository {
     
     async findAll(): Promise<Customers[]> {
 
-        const customers = await this.repository.customers.findMany({})
+        const customers = await this.repository.customers.findMany({
+            select: {
+                id: true,
+                username: true,
+                email: true
+            }
+        })
+        //@ts-ignore
         return customers
     }
 

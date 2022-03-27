@@ -2,6 +2,7 @@ import { prisma } from "@database/prismaClient";
 import { ICreateCustomerDTO } from "@modules/customer/dtos/ICreateCustomerDTO";
 import { ICustomersRepository } from "@modules/customer/repositories/ICustomersRepository";
 import { Customers, PrismaClient } from "@prisma/client"
+import { AppError } from "@shared/errors/appError";
 
 class CustomersRepository implements ICustomersRepository {
     private repository: PrismaClient
@@ -12,7 +13,7 @@ class CustomersRepository implements ICustomersRepository {
 
     async create({ email, username, password }: ICreateCustomerDTO): Promise<Customers> {
         
-        const newCustomer = await prisma.customers.create({
+        const newCustomer = await this.repository.customers.create({
             data: {
                 email,
                 username,
@@ -25,71 +26,53 @@ class CustomersRepository implements ICustomersRepository {
     
     async findAll(): Promise<Customers[]> {
 
-        const customers = await prisma.customers.findMany({
-            select: {
-                id: true,
-                email: true,
-                username: true
-            }
-        })
-        
-        //@ts-ignore
+        const customers = await this.repository.customers.findMany({})
         return customers
     }
 
     async findByEmail(email: string): Promise<Customers> {
 
-        const customer = await prisma.customers.findUnique({
+        const customer = await this.repository.customers.findUnique({
             where: {
                 email
             }
         })
 
+        // if(!customer) {
+        //     throw new AppError("Customer not found!", 404)
+        // }
+        //@ts-ignore
         return customer
     }
     
     async findById(id_customer: string): Promise<Customers> {
         
-        const customer = await prisma.customers.findUnique({
+        const customer = await this.repository.customers.findUnique({
             where: {
                 id: id_customer
             }
         })
+
+        if(!customer) {
+            throw new AppError("Customer not found!", 404)
+        }
 
         return customer
     }
 
     async findByUsername(username: string): Promise<Customers> {
         
-        const customer = await prisma.customers.findUnique({
+        const customer = await this.repository.customers.findUnique({
             where: {
                 username
             }
-        });
-
-        return customer
-    }
-    
-    async findAllDeliveriesByCustomer(id_customer: string): Promise<Customers> {
-        
-        const deliveriesByCustomer = await prisma.customers.findUnique({
-            where: {
-                id: id_customer
-            },
-            select: {
-                id: true,
-                username: true,
-                deliveries: {
-                    select: {
-                        id: true,
-                        item_name: true,
-                        created_at: true,
-                    }
-                }
-            }           
         })
 
-        return deliveriesByCustomer
+        if(!customer) {
+            throw new AppError("Customer not found!", 404)
+        }
+
+        return customer
     }
 }
 

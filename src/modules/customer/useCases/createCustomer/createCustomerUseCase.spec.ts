@@ -1,7 +1,11 @@
-import { prisma } from "@database/prismaClient";
-import { clearDataBase, populateDataBase } from "@database/seed";
-import { AppError } from "@shared/errors/appError";
-import { CreateCustomerUseCase } from "./createCustomerUseCase";
+import { prisma } from "@database/prismaClient"
+import { clearDataBase, populateDataBase } from "@database/seed"
+import { AppError } from "@shared/errors/appError"
+import { CreateCustomerUseCase } from "./createCustomerUseCase"
+import { CustomersRepository } from "@modules/customer/infra/prisma/repositories/CustomersRepository"
+
+let createCustomerUseCase: CreateCustomerUseCase
+let customersRepository: CustomersRepository
 
 beforeAll(async () => {
     await clearDataBase();
@@ -13,8 +17,6 @@ afterAll(async () => {
     await populateDataBase();
 });
 
-const createCustomerUseCase = new CreateCustomerUseCase();
-
 const customerTest = {
     email: "newcustomer@test.com",
     username: "newcustomer",
@@ -22,6 +24,11 @@ const customerTest = {
 }
 
 describe("Create Customer", () => {
+    
+    beforeEach(()=> {
+        customersRepository = new CustomersRepository()
+        createCustomerUseCase = new CreateCustomerUseCase(customersRepository)
+    })
     
     it("Should be able to create a new Customer", async () => {
 

@@ -38,9 +38,6 @@ class CustomersRepository implements ICustomersRepository {
             }
         })
 
-        // if(!customer) {
-        //     throw new AppError("Customer not found!", 404)
-        // }
         //@ts-ignore
         return customer
     }
@@ -53,10 +50,7 @@ class CustomersRepository implements ICustomersRepository {
             }
         })
 
-        if(!customer) {
-            throw new AppError("Customer not found!", 404)
-        }
-
+        //@ts-ignore
         return customer
     }
 
@@ -68,10 +62,7 @@ class CustomersRepository implements ICustomersRepository {
             }
         })
 
-        if(!customer) {
-            throw new AppError("Customer not found!", 404)
-        }
-
+        //@ts-ignore
         return customer
     }
 }

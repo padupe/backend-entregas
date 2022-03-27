@@ -4,7 +4,6 @@ import { inject, injectable } from "tsyringe";
 import { ICustomersRepository } from "@modules/customer/repositories/ICustomersRepository";
 import { ICreateCustomerDTO } from "@modules/customer/dtos/ICreateCustomerDTO";
 import { hashPassword } from "@helpers/bcrypt";
-import { prisma } from "@database/prismaClient";
 
 interface IResponseCreateCustomer {
     message: string;

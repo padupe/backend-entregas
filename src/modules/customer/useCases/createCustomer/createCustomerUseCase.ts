@@ -1,46 +1,39 @@
-import { prisma } from "@database/prismaClient";
-import { hash } from "bcrypt";
+import "reflect-metadata"
 import { AppError } from "@shared/errors/appError";
-
-interface ICreateCustomer {
-    email: string;
-    username: string;
-    password: string;
-};
+import { inject, injectable } from "tsyringe";
+import { ICustomersRepository } from "@modules/customer/repositories/ICustomersRepository";
+import { ICreateCustomerDTO } from "@modules/customer/dtos/ICreateCustomerDTO";
+import { hashPassword } from "@helpers/bcrypt";
 
 interface IResponseCreateCustomer {
     message: string;
     customer: Object;
 }
 
+@injectable()
 export class CreateCustomerUseCase {
 
-    async execute({ email, username, password }: ICreateCustomer): Promise<IResponseCreateCustomer> {
+    constructor(
+        @inject("CustomersRepository")
+        private customersRepository: ICustomersRepository
+    ){}
 
-        const usernameExists = await prisma.customers.findUnique({
-            where: {
-                username
-            }
-        });
+    async execute({ email, username, password }: ICreateCustomerDTO): Promise<IResponseCreateCustomer> {
 
-        const emailExists = await prisma.customers.findUnique({
-            where: {
-                email
-            }
-        })
-        
+        const usernameExists = await this.customersRepository.findByUsername(String(username))
+        console.log("userCase - 1:", usernameExists)
+
+        const emailExists = await this.customersRepository.findByEmail(email)
+        console.log("userCase - 2:", emailExists)
+
         if (usernameExists || emailExists ) {
             throw new AppError('Customer already exists!');
-        };
+        }
 
-        const hashPass = await hash(password, 10);
-
-        const newCustomer = await prisma.customers.create({
-            data: {
+        const newCustomer = await this.customersRepository.create({
                 email,
                 username,
-                password: hashPass
-            }
+                password: await hashPassword(password)
         });
 
         return {

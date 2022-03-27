@@ -1,6 +1,6 @@
-import { prisma } from "@database/prismaClient";
-import { ICustomersRepository } from "@modules/customer/repositories/ICustomersRepository";
-import { inject, injectable } from "tsyringe";
+import "reflect-metadata"
+import { ICustomersRepository } from "@modules/customer/repositories/ICustomersRepository"
+import { inject, injectable } from "tsyringe"
 
 @injectable()
 export class FindAllCustomersUseCase {

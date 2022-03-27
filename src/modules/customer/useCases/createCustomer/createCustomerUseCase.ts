@@ -27,9 +27,9 @@ export class CreateCustomerUseCase {
         }
 
         const newCustomer = await this.customersRepository.create({
-                email,
-                username,
-                password: await hashPassword(password)
+            email,
+            username,
+            password: await hashPassword(password)
         });
 
         return {

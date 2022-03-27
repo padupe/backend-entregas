@@ -1,9 +1,16 @@
 import { prisma } from "@database/prismaClient";
+import { CustomersRepository } from "@modules/customer/infra/prisma/repositories/CustomersRepository";
 import { FindAllCustomersUseCase } from "./findAllCustomersUseCase";
 
-const findAllCustomersUseCase = new FindAllCustomersUseCase();
+let findAllCustomersUseCase: FindAllCustomersUseCase
+let customersRepository: CustomersRepository
 
 describe("List all Customers registered on App", () => {
+
+    beforeEach(()=> {
+        customersRepository = new CustomersRepository()
+        findAllCustomersUseCase = new FindAllCustomersUseCase(customersRepository)
+    })
 
     it("Should be able to list all Customers", async () => {
 

@@ -4,6 +4,7 @@ import { inject, injectable } from "tsyringe";
 import { ICustomersRepository } from "@modules/customer/repositories/ICustomersRepository";
 import { ICreateCustomerDTO } from "@modules/customer/dtos/ICreateCustomerDTO";
 import { hashPassword } from "@helpers/bcrypt";
+import { prisma } from "@database/prismaClient";
 
 interface IResponseCreateCustomer {
     message: string;
@@ -12,19 +13,15 @@ interface IResponseCreateCustomer {
 
 @injectable()
 export class CreateCustomerUseCase {
-
     constructor(
-        @inject("CustomersRepository")
+        @inject('CustomersRepository')
         private customersRepository: ICustomersRepository
     ){}
 
     async execute({ email, username, password }: ICreateCustomerDTO): Promise<IResponseCreateCustomer> {
 
-        const usernameExists = await this.customersRepository.findByUsername(String(username))
-        console.log("userCase - 1:", usernameExists)
-
-        const emailExists = await this.customersRepository.findByEmail(email)
-        console.log("userCase - 2:", emailExists)
+        const usernameExists = await this.customersRepository.findByUsername(username)
+        const emailExists = await this.customersRepository.findByEmail(email)     
 
         if (usernameExists || emailExists ) {
             throw new AppError('Customer already exists!');

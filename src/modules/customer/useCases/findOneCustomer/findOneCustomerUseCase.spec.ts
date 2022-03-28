@@ -1,10 +1,17 @@
 import { prisma } from "@database/prismaClient";
+import { CustomersRepository } from "@modules/customer/infra/prisma/repositories/CustomersRepository";
 import { AppError } from "@shared/errors/appError";
 import { FindOneCustomerUseCase } from "./findOneCustomerUseCase";
 
-const findOneCustomerUseCase = new FindOneCustomerUseCase();
+let findOneCustomerUseCase: FindOneCustomerUseCase
+let customersRepository: CustomersRepository
 
 describe("Find one Client by ID", () => {
+
+    beforeEach(() => {
+        customersRepository = new CustomersRepository()
+        findOneCustomerUseCase = new FindOneCustomerUseCase(customersRepository)
+    })
 
     it("Shoul be able to find one client with successfull", async () => {
 

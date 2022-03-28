@@ -1,10 +1,17 @@
-import { adminApp } from "@database/seed";
-import { AppError } from "@shared/errors/appError";
-import { AuthenticateAdminUseCase } from "./authenticateAdminUseCase";
+import { adminApp } from "@database/seed"
+import { AdminRepository } from "@modules/account/infra/prisma/repositories/AdminRepository"
+import { AppError } from "@shared/errors/appError"
+import { AuthenticateAdminUseCase } from "./authenticateAdminUseCase"
 
-const authenticateAdminUseCase = new AuthenticateAdminUseCase();
+let authenticateAdminUseCase: AuthenticateAdminUseCase
+let adminRepository: AdminRepository
 
 describe("Autenticate Admin", () => {
+
+    beforeEach(()=> {
+        adminRepository = new AdminRepository()
+        authenticateAdminUseCase = new AuthenticateAdminUseCase(adminRepository)
+    })
 
     it("Should be able to authenticate Admin on App", async () => {
 

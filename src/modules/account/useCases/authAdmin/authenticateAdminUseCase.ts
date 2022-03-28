@@ -1,7 +1,9 @@
-import { prisma } from "@database/prismaClient";
-import { compare } from "bcrypt";
-import { sign } from "jsonwebtoken";
+import "reflect-metadata"
+import { verifyPassword } from "@helpers/bcrypt"
+import { signJWT } from "@helpers/jsonwebtoken"
 import { AppError } from "@shared/errors/appError";
+import { inject, injectable } from "tsyringe";
+import { IAdminRepository } from "@modules/account/repositories/IAdminRepository";
 
 interface IAuthenticateAdmin {
     username: string;
@@ -13,27 +15,29 @@ interface IResponseAuthenticate {
     token: string;
 };
 
+@injectable()
 export class AuthenticateAdminUseCase {
+
+    constructor(
+        @inject('AdminRepository')
+        private adminRepository: IAdminRepository
+    ){}
 
     async execute({ username, password }: IAuthenticateAdmin): Promise<IResponseAuthenticate> {
 
-        const userAuth = await prisma.admin.findFirst({
-            where: {
-                username
-            }
-        });
+        const userAuth = await this.adminRepository.find(username)
 
         if(!userAuth) {
             throw new AppError("Username or password invalid!", 401);
         };
 
-        const verifyPassword = await compare(password, userAuth.password);
+        const verifyPass = await verifyPassword(password, userAuth.password);
 
-        if(!verifyPassword) {
+        if(!verifyPass) {
             throw new AppError("Username or password invalid!", 401);
         };
 
-        const token = sign({username}, String(process.env.SECRET_KEY), {
+        const token = signJWT({username}, String(process.env.SECRET_KEY), {
             subject: userAuth.id,
             expiresIn: "1d"
         });

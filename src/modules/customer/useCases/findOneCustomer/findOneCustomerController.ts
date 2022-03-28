@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
+import { container } from "tsyringe";
 import { FindOneCustomerUseCase } from "./findOneCustomerUseCase";
-
 
 export class FindOneCustomerController {
 
@@ -8,11 +8,9 @@ export class FindOneCustomerController {
 
         const { id: id_customer } = request.params;
 
-        const findOneCustomerUseCase = new FindOneCustomerUseCase();
-        const customer = await findOneCustomerUseCase.execute({
-            id_customer
-        });
+        const findOneCustomerUseCase = container.resolve(FindOneCustomerUseCase)
+        const customer = await findOneCustomerUseCase.execute({id_customer})
         
-        return response.json(customer);
+        return response.json(customer)
     }
 }

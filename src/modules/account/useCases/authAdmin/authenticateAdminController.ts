@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { container } from "tsyringe";
 import { AuthenticateAdminUseCase } from "./authenticateAdminUseCase";
 
 export class AuthenticateAdminController {
@@ -7,12 +8,8 @@ export class AuthenticateAdminController {
 
         const { username, password } = request.body;
 
-        const authenticateAdminUseCase = new AuthenticateAdminUseCase();
-        
-        const result = await authenticateAdminUseCase.execute({
-            username,
-            password
-        });
+        const authenticateAdminUseCase = container.resolve(AuthenticateAdminUseCase)
+        const result = await authenticateAdminUseCase.execute(request.body)
 
         return response.status(200).json(result)
     }
